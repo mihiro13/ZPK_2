@@ -45,13 +45,14 @@ system.runInterval(() => {
                 (lb_type === 'x' && inXRange) ||
                 (lb_type === 'z' && inZRange);
 
-            if (withinLimit) {
+            if (inXRange && inZRange) {
                 const sendpb = player.getDynamicProperty('sendpb') ?? true;
                 const sendpb_x = player.getDynamicProperty('sendpb_x') ?? true;
                 const sendpb_z = player.getDynamicProperty('sendpb_z') ?? true;
                 const sendoffset = player.getDynamicProperty('sendoffset') ?? true;
                 const sendoffset_x = player.getDynamicProperty('sendoffset_x') ?? true;
                 const sendoffset_z = player.getDynamicProperty('sendoffset_z') ?? true;
+                const color2 = player.getDynamicProperty('color2') ?? 'f';
                 const digit = player.getDynamicProperty('digit') ?? 4;
 
                 setProperties(player, 'lb', {
@@ -82,15 +83,15 @@ system.runInterval(() => {
                 }
 
                 if ((lb_type === 'both' || lb_type === 'zneo') && sendoffset === true) {
-                    sendMessage(player, `§lOffset: §r${offset.toFixed(digit)}`);
+                    sendMessage(player, `§lOffset: §r§${color2}${offset.toFixed(digit)}`);
                 }
 
                 if ((lb_type === 'z' && (sendoffset === true || sendoffset_z === true)) || ((lb_type === 'both' || lb_type === 'zneo') && sendoffset_z === true)) {
-                    sendMessage(player, `§lOffset Z: §r${offset_z.toFixed(digit)}`);
+                    sendMessage(player, `§lOffset Z: §r§${color2}${offset_z.toFixed(digit)}`);
                 }
 
                 if ((lb_type === 'x' && (sendoffset === true || sendoffset_x === true)) || ((lb_type === 'both' || lb_type === 'zneo') && sendoffset_x === true)) {
-                    sendMessage(player, `§lOffset X: §r${offset_x.toFixed(digit)}`);
+                    sendMessage(player, `§lOffset X: §r§${color2}${offset_x.toFixed(digit)}`);
                 }
 
             }

@@ -9,7 +9,7 @@ const inverseLb_types = ['none', 'x', 'z', 'both'];
 /**
  * @param {Player} player 
  */
-export function setlbForm(player) {
+export function setlbForm(player, newLB = true) {
     new ModalFormData()
         .title('Set Landing Block')
         .dropdown('Landing Block Type', lb_types, { defaultValueIndex: lb_types.indexOf(player.getDynamicProperty('lb_type')) ?? 'both' })
@@ -48,8 +48,9 @@ export function setlbForm(player) {
                         break;
                 }
 
+                if (newLB === true) player.setDynamicProperty('lb', coord);
+
                 player.setDynamicProperties({
-                    'lb': coord,
                     'lb_type': lb_type,
                     'inverseLB': inverseLB
                 });
