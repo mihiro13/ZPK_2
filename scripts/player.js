@@ -27,7 +27,7 @@ system.runInterval(() => {
         let { isWalkJump, jumpTickInput } = current;
         if (current.isOnGround === true && isJumping === true && isOnGround === false) {
             jumpTickInput = input;
-            isWalkJump = isSprinting;
+            isWalkJump = !isSprinting;
         };
         const props = {
             'loc': loc,
