@@ -1,5 +1,13 @@
 import { system, world } from '@minecraft/server';
 import { setProperties, getProperties } from './util/property';
+import './server/practice';
+import './server/checkpoint';
+import './server/gamemodeChanger';
+import './landingBlock/setlb';
+import './landingBlock/offset';
+import './labels/display';
+import './form/settings';
+import './labels/label';
 
 system.runInterval(() => {
     for (const player of world.getPlayers()) {

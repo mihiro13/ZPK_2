@@ -8,13 +8,13 @@ import { sendMessage } from '../util/message';
  */
 export function itemsForm(player) {
     if (player.isOp() === false) {
-        sendMessage(player, 'you tarinai permission');
+        sendMessage(player, 'you tarinai permission!');
         return;
     };
     const checkpointRetuner = player.getDynamicProperty('cpReturnItem') ?? 'minecraft:red_dye';
     const checkpointSet = player.getDynamicProperty('cpSetItem') ?? 'minecraft:emerald';
     const setlbItem = player.getDynamicProperty('setlbItem') ?? 'minecraft:cyan_dye';
-    const gamemodeChanger = player.getDynamicProperty('setlbItem') ?? 'minecraft:iron_nugget';
+    const gamemodeChanger = player.getDynamicProperty('gmChangerItem') ?? 'minecraft:iron_nugget';
     new ModalFormData()
         .title('Items')
         .textField('Checkpoint Returner', 'minecraft:red_dye', { defaultValue: checkpointRetuner })
