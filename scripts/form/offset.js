@@ -5,7 +5,7 @@ import { settingForm } from './settings';
 /**
  * @param {Player} player 
  */
-export function offsetsForm(player) {
+export function offsetForm(player) {
     const sendpb = player.getDynamicProperty('sendpb') ?? true;
     const sendpb_x = player.getDynamicProperty('sendpb_x') ?? true;
     const sendpb_z = player.getDynamicProperty('sendpb_z') ?? true;
