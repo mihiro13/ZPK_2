@@ -1,2 +1,13 @@
-# ZPK_2
-A minecraft bedrock addon for parkour
+# ZPK 2
+
+マイクラ統合版用のアスレ補助アドオンです
+
+[ダウンロード](https://github.com/mihiro13/ZPK_2/releases/latest)
+
+## 導入
+
+アドオンをダウンロードし、ワールドに適応してください。必ず`Beta API`をオンにしてください。
+
+## 使い方
+
+スニークしながら上を向くと設定画面を開けます
