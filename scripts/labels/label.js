@@ -148,7 +148,7 @@ system.runInterval(() => {
         } else {
             if (current.jumpTickInput === '' && tbf.input === '' && current.input !== '' && currentLabels.airtime > 0) {
                 updatedLabels.lastTiming = currentLabels.airtime === 1 ? 'Max Pessi' : `Pessi -${currentLabels.airtime}t`;
-            } else if (current.jumpTickInput !== '' && tbf.isSprinting === false && current.isWalkJump === false && current.isSprinting) {
+            } else if (current.jumpTickInput !== '' && tbf.isSprinting === false && current.isWalkJump === true && current.isSprinting) {
                 updatedLabels.lastTiming = currentLabels.airtime === 1 ? 'Max FMM' : `FMM ${currentLabels.airtime}t`;
             }
         };
