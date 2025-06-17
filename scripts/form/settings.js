@@ -2,7 +2,7 @@ import { system, world } from '@minecraft/server';
 import { getProperties } from '../util/property';
 import { ActionFormData } from '@minecraft/server-ui';
 import { guiForm } from './gui';
-import { othersForm } from './others';
+import { offsetForm } from './offset';
 
 /**
  * @param {Player} player 
@@ -17,9 +17,9 @@ export function settingForm(player) {
             if (res.selection === 0) {
                 return guiForm(player);
             } else if (res.selection === 1) {
-                return othersForm(player);
+                return offsetForm(player);
             } else if (res.selection === 2) {
-                return checkpointForm(player);
+                return lbForm(player);
             }
         })
 };

@@ -5,7 +5,7 @@
         "name": "ZPK Mod 2",
         "uuid": "8a14567b-3c4f-4f6d-87d5-9a113ab905cc",
         "version": [ 1, 0, 0 ],
-        "min_engine_version": [ 1, 21, 80 ]
+        "min_engine_version": [ 1, 21, 90 ]
     },
     "modules": [
         {
@@ -24,11 +24,19 @@
     "dependencies": [
         {
             "module_name": "@minecraft/server",
-            "version": "2.0.0-beta"
+            "version": "2.0.0"
         },
         {
             "module_name": "@minecraft/server-ui",
-            "version": "2.0.0-beta"
+            "version": "2.0.0"
         }
-    ]
+    ],
+    "metadata": {
+        "authors": [
+            "mihiro13"
+        ],
+        "url": "https://github.com/mihiro13",
+        "license": "MIT",
+        "product_type": "addon"
+    }
 }

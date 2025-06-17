@@ -5,7 +5,7 @@ import { settingForm } from './settings';
 /**
  * @param {Player} player 
  */
-export function othersForm(player) {
+export function offsetsForm(player) {
     const sendpb = player.getDynamicProperty('sendpb') ?? true;
     const sendpb_x = player.getDynamicProperty('sendpb_x') ?? true;
     const sendpb_z = player.getDynamicProperty('sendpb_z') ?? true;
@@ -15,7 +15,7 @@ export function othersForm(player) {
     const digit = player.getDynamicProperty('digit') ?? 4;
     const offset_limit = player.getDynamicProperty('offset_limit') ?? 0.7;
     new ModalFormData()
-        .title('Others')
+        .title('Offset')
         .slider('Decimal Format', 0, 16, { defaultValue: digit })
         .slider('Offset Limit §7(0.1x) §r', 1, 10, { defaultValue: offset_limit * 10 })
         .toggle('Send Total Offset in chat', { defaultValue: sendoffset })

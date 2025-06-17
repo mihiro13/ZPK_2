@@ -77,29 +77,9 @@ world.afterEvents.itemUse.subscribe((ev) => {
     const { source: player, itemStack } = ev;
     if (player.typeId !== 'minecraft:player') return;
 
-    const setlbItem = player.getDynamicProperty('setlbItem') ?? 'minecraft:emerald';
+    const setlbItem = player.getDynamicProperty('setlbItem') ?? 'minecraft:cyan_dye';
     if (itemStack.typeId === setlbItem) {
-        const loc = player.location;
-        const coord = {
-            x: loc.x,
-            y: loc.y,
-            z: loc.z
-        }
-
-        if (player.isSneaking === true) {
-            setlbForm(player);
-        } else {
-            player.setDynamicProperty('lb', coord);
-            setProperties(player, 'lb', {
-                'offset': -1,
-                'offset_x': -1,
-                'offset_z': -1,
-                'pb': -1,
-                'pb_x': -1,
-                'pb_z': -1
-            });
-            sendMessage(player, 'Set landing block successfully!');
-        }
+        setlbForm(player);
         return;
     }
 });
