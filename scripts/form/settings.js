@@ -25,7 +25,7 @@ export function settingForm(player) {
             } else if (res.selection === 2) {
                 return offsetForm(player);
             } else if (res.selection === 3) {
-                return setlbForm(player);
+                return setlbForm(player, false);
             }
         })
 };

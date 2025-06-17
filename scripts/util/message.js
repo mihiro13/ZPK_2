@@ -7,8 +7,8 @@ import { Player } from '@minecraft/server';
  * @returns 
  */
 export function sendMessage(player, message) {
-    const color1 = player.getDynamicProperty('color1') ?? '§6';
-    const color2 = player.getDynamicProperty('color2') ?? '§f';
+    const color1 = player.getDynamicProperty('color1') ?? '6';
+    const color2 = player.getDynamicProperty('color2') ?? 'f';
     const prefix = player.getDynamicProperty('prefix') ?? '<MPK>';
     player.sendMessage(`§r§${color1}${prefix}§r §${color2}${message}`);
     return;

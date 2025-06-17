@@ -79,7 +79,7 @@ world.afterEvents.itemUse.subscribe((ev) => {
 
     const setlbItem = player.getDynamicProperty('setlbItem') ?? 'minecraft:cyan_dye';
     if (itemStack.typeId === setlbItem) {
-        setlbForm(player);
+        setlbForm(player, true);
         return;
     }
 });
