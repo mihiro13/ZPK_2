@@ -1,4 +1,4 @@
-import { Player } from '@minecraft/server';
+import { Player, PlayerPermissionLevel } from '@minecraft/server';
 import { ModalFormData } from '@minecraft/server-ui';
 import { settingForm } from './settings';
 import { sendMessage } from '../util/message';
@@ -7,7 +7,7 @@ import { sendMessage } from '../util/message';
  * @param {Player} player 
  */
 export function itemsForm(player) {
-    if (player.isOp() === false) {
+    if (player.playerPermissionLevel !== PlayerPermissionLevel.Operator) {
         sendMessage(player, 'you tarinai permission!');
         return;
     };

@@ -1,4 +1,4 @@
-import { world } from '@minecraft/server';
+import { world, PlayerPermissionLevel } from '@minecraft/server';
 import { sendMessage } from '../util/message';
 
 world.afterEvents.itemUse.subscribe((ev) => {
@@ -7,20 +7,20 @@ world.afterEvents.itemUse.subscribe((ev) => {
     const gamemodeChanger = player.getDynamicProperty('gmChangerItem') ?? 'minecraft:iron_nugget';
 
     if (itemStack.typeId === gamemodeChanger) {
-        if (player.isOp() === false) {
+        if (player.playerPermissionLevel !== PlayerPermissionLevel.Operator) {
             sendMessage(player, 'you tarinai permission!');
             return;
         }
         const gamemode = player.getGameMode();
         switch (gamemode) {
-            case 'creative':
-                player.setGameMode('adventure');
+            case 'Creative':
+                player.setGameMode('Adventure');
                 break;
-            case 'adventure':
-                player.setGameMode('creative');
+            case 'Adventure':
+                player.setGameMode('Creative');
                 break;
             default:
-                player.setGameMode('creative');
+                player.setGameMode('Creative');
                 break;
         }
         return;
