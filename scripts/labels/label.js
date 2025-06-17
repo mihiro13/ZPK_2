@@ -72,9 +72,9 @@ system.runInterval(() => {
         };
 
         // Hit Angle
-        if (ttbf.isOnGround === false && tbf.isOnGround === true) {
-            updatedLabels.ha = current.yaw;
-        };
+        //if (ttbf.isOnGround === false && tbf.isOnGround === true) {
+        //    updatedLabels.ha = current.yaw;
+        //};
 
         // Second Turn
         if (currentLabels.airtime === 2) {
@@ -89,10 +89,11 @@ system.runInterval(() => {
         // Last Turning
         updatedLabels.lastTurning = current.yaw - tbf.yaw;
 
-        // Last Landing, Hit
+        // Last Landing, Hit and Hit Angle
         if (current.isOnGround === true && tbf.isOnGround === false) {
             updatedLabels.lastLanding = tbf.loc;
             updatedLabels.hit = current.loc;
+            updatedLabels.ha = current.yaw;
         };
 
         // Speed
