@@ -1,7 +1,7 @@
 # ZPK 2
 
 マイクラ統合版用のアスレ補助アドオンです  
-ここからダウンロード(まだ)
+[ここからダウンロード](https://github.com/mihiro13/ZPK_2/releases/latest)
 
 ## 導入
 
