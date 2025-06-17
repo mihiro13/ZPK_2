@@ -8,7 +8,7 @@ import { sendMessage } from '../util/message';
  */
 export function itemsForm(player) {
     if (player.isOp() === false) {
-        sendMessage('you tarinai permission');
+        sendMessage(player, 'you tarinai permission');
         return;
     };
     const checkpointRetuner = player.getDynamicProperty('cpReturnItem') ?? 'minecraft:red_dye';

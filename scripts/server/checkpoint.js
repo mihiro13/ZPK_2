@@ -1,4 +1,5 @@
 import { system, world } from '@minecraft/server';
+import { sendMessage } from '../util/message';
 
 system.afterEvents.scriptEventReceive.subscribe((ev) => {
     const { sourceEntity, sourceBlock, message, id } = ev;
@@ -43,5 +44,6 @@ world.afterEvents.itemUse.subscribe((ev) => {
             'cp_location': player.location,
             'cp_rotation': { x: rotation.x, y: rotation.y, z: 0 }
         });
+        sendMessage(player, 'Set Checkpoint')
     }
 });
