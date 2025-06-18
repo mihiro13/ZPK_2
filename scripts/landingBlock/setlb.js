@@ -8,7 +8,7 @@ world.beforeEvents.playerInteractWithBlock.subscribe((ev) => {
     const sign = block.getComponent('minecraft:sign')?.getText();
 
     if (!sign) return;
-    if (sign === true && isFirstEvent === false) return ev.cancel = true;
+    if (isFirstEvent === false) return ev.cancel = true;
     if (sign.startsWith('/setlb') && player.isSneaking === false) {
         ev.cancel = true;
         const args = sign.split(' ');
