@@ -13,7 +13,7 @@ export function clearLbCommandHandle(origin) {
     /** @type { Player } */
     const player = origin.sourceEntity;
     player.setDynamicProperties({
-        lb: false,
+        lb: { x: 0, y: 500, z: 0 },
         boxStart: { x: 0, y: 500, z: 0 },
         boxEnd: { x: 0, y: 500, z: 0 }
     });

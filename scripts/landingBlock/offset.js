@@ -5,7 +5,7 @@ export function checkOffset(player) {
     const props = getProperties(player, 'current');
     const tbf_props = getProperties(player, 'tbf');
     const ttbf_props = getProperties(player, 'ttbf');
-    const lb = player.getDynamicProperty('lb');
+    const lb = player.getDynamicProperty('lb') ?? { x: 0, y: 500, z: 0 };
     const boxStart = player.getDynamicProperty('boxStart') ?? { x: 0, y: 500, z: 0 };
     const boxEnd = player.getDynamicProperty('boxEnd') ?? { x: 0, y: 500, z: 0 };
     const lb_type = player.getDynamicProperty('lb_type');
@@ -15,7 +15,7 @@ export function checkOffset(player) {
     const oldLb = props.loc.y <= lb.y && tbf_props.loc.y > lb.y;
     
     if (oldLb) {
-        if (!lb) return;
+        if (lb.y === 500) return;
     }
 
     if (newLb) {
