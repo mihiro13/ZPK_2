@@ -1,31 +1,28 @@
-import { world, system } from '@minecraft/server';
 import { getProperties } from '../util/property';
 
-world.afterEvents.worldLoad.subscribe(() => {
-    system.runInterval(() => {
-        for (const player of world.getPlayers()) {
-            const labels = getProperties(player, 'label');
-            const guiConfig = _safeParse(player.getDynamicProperty('guiConfig'), defaultConfig);
-            const digit = player.getDynamicProperty('digit') ?? 4;
-            const separate = ': §r';
-            const color1 = player.getDynamicProperty('color1') ?? '§6';
-            const color2 = player.getDynamicProperty('color2') ?? '§f';
-            const angleLine = guiConfig.pitch || guiConfig.yaw || guiConfig.ja || guiConfig.ha ? '\n' : '';
-            const display = initializeDisplay(labels, { digit: digit, separate: separate, color1: color1, color2: color2 }, angleLine, player);
-            const result = Object.keys(display).filter(key => guiConfig[key] === true).map(key => display[key]).join('');
-            player.onScreenDisplay.setActionBar(result);
-        }
-    })
-});
+export function displayLabels(player) {
+    const labels = getProperties(player, 'label');
+    const guiConfig = _safeParse(player.getDynamicProperty('guiConfig'), defaultConfig);
+    const digit = player.getDynamicProperty('digit') ?? 4;
+    const separate = ': §r';
+    const color1 = player.getDynamicProperty('color1') ?? '6';
+    const color2 = player.getDynamicProperty('color2') ?? 'f';
+    const angleLine = guiConfig.pitch || guiConfig.yaw || guiConfig.ja || guiConfig.ha ? '\n' : '';
+    const display = initializeDisplay(labels, { digit: digit, separate: separate, color1: color1, color2: color2 }, angleLine, player);
+    const result = Object.keys(display).filter(key => guiConfig[key] === true).map(key => display[key]).join('');
+    player.onScreenDisplay.setActionBar(result);
+    return;
+}
 
 function _isNumeric(value) {
-    if (typeof value === "number") return !isNaN(value);
-    if (typeof value !== "string") return false;
-    if (value.trim() === "") return false; // ← 空文字除外
+    if (typeof value === 'number') return !isNaN(value);
+    if (typeof value !== 'string') return false;
+    if (value.trim() === '') return false;
     return !isNaN(Number(value));
 };
 
 function initializeDisplay(labels, decorateOptions, angleLine, player) {
+    if (!labels) return;
     const { digit, separate, color1, color2 } = decorateOptions;
     const display = {};
 
@@ -115,44 +112,3 @@ function _safeParse(str, obj) {
         return obj;
     }
 };
-
-/*
-
-// Second Turn
-if (current.airtime === 2) {
-    labels.secondTurn = `Second Turn${separate}${current.yaw - tbf.yaw}\n`;
-};
-
-// Preturn
-if (ttbf.isOnGround === true && current.isOnGround === false && current.isJumping) {
-    labels.preturn = `Preturn${separate}${tbf.yaw - ttbf.yaw}\n`;
-};
-
-// Last Turning
-labels.lastTurning = `Last Turning${separate}${current.yaw - tbf.yaw}\n`;
-
-// Last Landing, Hit
-if (isOnGround === true && tbf_isOnGround === false) {
-    labels.lastLanding = `X${separate}${tbf.loc.x.toFixed(digit)} Y${separate}${tbf.loc.y.toFixed(digit)} Z${separate}${tbf.loc.y.toFixed(digit)}\n`;
-    labels.hit = `X${separate}${current.loc.x.toFixed(digit)} Y${separate}${current.loc.y.toFixed(digit)} Z${separate}${current.loc.y.toFixed(digit)}\n`;
-};
-
-// Speed
-labels.speed = `Speed (b/t) X${separate}${current.vel.x.toFixed(digit)} Y${separate}${current.vel.y.toFixed(digit)} Z${separate}${current.vel.y.toFixed(digit)}\n`;
-
-// Speed Vector
-let vel_fac = Math.atan2(vel.x, vel.z) * -180 / Math.PI;
-if (isNaN(vel_fac)) vel_fac = 0;
-labels.speedVector = `Speed Vector${separate}${Math.sqrt(current.vel.x ** 2 + current.vel.z ** 2).toFixed(digit)}/${vel_fac.toFixed(digit)}°`;
-
-// Tier
-if (current.isOnGround === true && tbf.isOnGround === false) {
-    labels.tier = `Tier${separate}10`;
-} else if (tbf_isOnGround == false && isOnGround == false) {
-    player.setDynamicProperty('tier', ((player.getDynamicProperty('tier') ?? 0) - 1) ?? 0);
-};
-
-// Airtime
-labels.airtime = `Airtime${separate}${current.airtime}`;
-
-*/

@@ -1,5 +1,8 @@
 import { system, world } from '@minecraft/server';
 import { setProperties, getProperties } from './util/property';
+import { updateLables } from './labels/label';
+import { checkOffset } from './landingBlock/offset';
+import { displayLabels } from './labels/display';
 import './server/practice';
 import './server/checkpoint';
 import './server/gamemodeChanger';
@@ -8,47 +11,54 @@ import './landingBlock/offset';
 import './labels/display';
 import './form/settings';
 import './labels/label';
+import './util/blockCollision';
+import './command/registryCommands';
 
-system.runInterval(() => {
-    for (const player of world.getPlayers()) {
-        const loc = player.location;
-        const rot = player.getRotation();
-        const vel = player.getVelocity();
-        const { isSprinting, isJumping, isOnGround, isSneaking } = player;
-        const input = getPlayerControlMovement(player);
-        const current = getProperties(player, 'current');
-        const tbf = getProperties(player, 'tbf');
-        let walktime;
-        if (isOnGround === false || input === '') {
-            walktime = 0;
-        } else if (input !== '' && vel.y === 0) {
-            walktime = current.walktime + 1;
-        };
-        let { isWalkJump, jumpTickInput } = current;
-        if (current.isOnGround === true && isJumping === true && isOnGround === false) {
-            jumpTickInput = input;
-            isWalkJump = !isSprinting;
-        };
-        const props = {
-            'loc': loc,
-            'yaw': rot.y,
-            'pitch': rot.x,
-            'vel': vel,
-            'isSprinting': isSprinting,
-            'isJumping': isJumping,
-            'isOnGround': isOnGround,
-            'isWalkJump': isWalkJump,
-            'isSneaking': isSneaking,
-            'input': input,
-            'walktime': walktime,
-            'jumpTickInput': jumpTickInput
-        };
+world.afterEvents.worldLoad.subscribe(() => {
+    system.runInterval(() => {
+        for (const player of world.getPlayers()) {
+            const loc = player.location;
+            const rot = player.getRotation();
+            const vel = player.getVelocity();
+            const { isSprinting, isJumping, isOnGround, isSneaking } = player;
+            const input = getPlayerControlMovement(player);
+            const current = getProperties(player, 'current');
+            const tbf = getProperties(player, 'tbf');
+            let walktime;
+            if (isOnGround === false || input === '') {
+                walktime = 0;
+            } else if (input !== '' && vel.y === 0) {
+                walktime = current.walktime + 1;
+            };
+            let { isWalkJump, jumpTickInput } = current;
+            if (current.isOnGround === true && isJumping === true && isOnGround === false) {
+                jumpTickInput = input;
+                isWalkJump = !isSprinting;
+            };
+            const props = {
+                'loc': loc,
+                'yaw': rot.y,
+                'pitch': rot.x,
+                'vel': vel,
+                'isSprinting': isSprinting,
+                'isJumping': isJumping,
+                'isOnGround': isOnGround,
+                'isWalkJump': isWalkJump,
+                'isSneaking': isSneaking,
+                'input': input,
+                'walktime': walktime,
+                'jumpTickInput': jumpTickInput
+            };
 
-        setProperties(player, 'current', props);
-        setProperties(player, 'tbf', current);
-        setProperties(player, 'ttbf', tbf);
-        continue;
-    }
+            setProperties(player, 'current', props);
+            setProperties(player, 'tbf', current);
+            setProperties(player, 'ttbf', tbf);
+            updateLables(player);
+            checkOffset(player);
+            displayLabels(player);
+            continue;
+        }
+    })
 });
 
 function getPlayerControlMovement(player) {
