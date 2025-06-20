@@ -1,7 +1,7 @@
 {
     "format_version": 2,
     "header": {
-        "description": "A parkour addon",
+        "description": "A addon for parkour",
         "name": "ZPK Mod 2",
         "uuid": "8129e7e8-97b9-4b3c-8bd7-7d2d884e45c4",
         "version": [ 1, 1, 0 ],
