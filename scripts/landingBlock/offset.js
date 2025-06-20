@@ -13,7 +13,7 @@ export function checkOffset(player) {
     const inv_z = player.getDynamicProperty('inv_z');
     const newLb = props.loc.y <= boxEnd.y && tbf_props.loc.y > boxEnd.y;
     const oldLb = props.loc.y <= lb.y && tbf_props.loc.y > lb.y;
-    
+
     if (oldLb) {
         if (lb.y === 500) return;
     }
@@ -31,6 +31,11 @@ export function checkOffset(player) {
         const old_z_source = lb_type === 'zneo' ? ttbf_props.loc.z : tbf_props.loc.z;
         old_offset_z = inv_z ? (old_z_source - lb.z) : (lb.z - old_z_source);
         old_offset_x = inv_x ? (tbf_props.loc.x - lb.x) : (lb.x - tbf_props.loc.x);
+
+        if (lb_type === 'zneo') {
+            boxStart.z += 0.6;
+            boxEnd.z -= 0.6;
+        }
 
         const positions = [
             boxStart,
@@ -59,7 +64,7 @@ export function checkOffset(player) {
             z: (boxStart.z + boxEnd.z) / 2,
         };
 
-        const z_source = lb_type === 'zneo' ? ttbf_props.loc.z : tbf_props.loc.z;
+        const z_source = tbf_props.loc.z;
 
         const isInX = (nearest.x < props.loc.x && props.loc.x < center.x) || (props.loc.x < nearest.x && center.x < props.loc.x);
         const isInZ = (nearest.z < z_source && z_source < center.z) || (z_source < nearest.z && center.z < z_source);
