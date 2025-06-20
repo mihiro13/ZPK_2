@@ -1,5 +1,4 @@
 import { world } from '@minecraft/server';
-import { setlbForm } from '../form/setlb';
 import { sendMessage } from '../util/message';
 import { setProperties } from '../util/property';
 
@@ -69,17 +68,6 @@ world.beforeEvents.playerInteractWithBlock.subscribe((ev) => {
         });
 
         sendMessage(player, 'Clear PB and Set landing block successfully!');
-        return;
-    }
-});
-
-world.afterEvents.itemUse.subscribe((ev) => {
-    const { source: player, itemStack } = ev;
-    if (player.typeId !== 'minecraft:player') return;
-
-    const setlbItem = player.getDynamicProperty('setlbItem') ?? 'minecraft:cyan_dye';
-    if (itemStack.typeId === setlbItem) {
-        setlbForm(player, true);
         return;
     }
 });

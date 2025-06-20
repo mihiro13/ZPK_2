@@ -53,27 +53,31 @@ const defaultConfig = {
  */
 export function guiForm(player) {
     const form = new ModalFormData()
-        .title('GUi')
-        .textField('Color1', '0-9|a-u', { defaultValue: player.getDynamicProperty('color1') ?? '6', tooltip: '§00§11§22§33§44§55§66§77§88§99§aa§bb§cc§dd§ee§ff§gg§hh§ii§jj§r§kk§r§ll§r§mm§nn§r§oo§r§pp§qq§rr§ss§tt§uu\n§r0: §0abc§rk:§kabc§r l:§labc §ro:§oabc §rr:clear' })
-        .textField('Color2', '0-9|a-u', { defaultValue: player.getDynamicProperty('color2') ?? 'f', tooltip: '§00§11§22§33§44§55§66§77§88§99§aa§bb§cc§dd§ee§ff§gg§hh§ii§jj§r§kk§r§ll§r§mm§nn§r§oo§r§pp§qq§rr§ss§tt§uu\n§r0: §0abc§rk:§kabc§r l:§labc §ro:§oabc §rr:clear' })
-        .textField('Prefix', '<MPK>', { defaultValue: player.getDynamicProperty('prefix') ?? '<MPK>' });
+        .title('GUi');
+    //.textField('Color1', '0-9|a-u', { defaultValue: player.getDynamicProperty('color1') ?? '6', tooltip: '§00§11§22§33§44§55§66§77§88§99§aa§bb§cc§dd§ee§ff§gg§hh§ii§jj§r§kk§r§ll§r§mm§nn§r§oo§r§pp§qq§rr§ss§tt§uu\n§r0: §0abc§rk:§kabc§r l:§labc §ro:§oabc §rr:clear' })
+    //.textField('Color2', '0-9|a-u', { defaultValue: player.getDynamicProperty('color2') ?? 'f', tooltip: '§00§11§22§33§44§55§66§77§88§99§aa§bb§cc§dd§ee§ff§gg§hh§ii§jj§r§kk§r§ll§r§mm§nn§r§oo§r§pp§qq§rr§ss§tt§uu\n§r0: §0abc§rk:§kabc§r l:§labc §ro:§oabc §rr:clear' })
+    //.textField('Prefix', '<MPK>', { defaultValue: player.getDynamicProperty('prefix') ?? '<MPK>' });
     const guiConfig = _safeParse(player.getDynamicProperty('guiConfig'), defaultConfig);
     const keys = Object.keys(labelName);
     keys.forEach(k => {
         form.toggle(labelName[k] + '\n§7(hide/show)', { defaultValue: guiConfig[k] });
     });
     form.show(player).then((res) => {
-        if (res.canceled === true) return settingForm(player);
+        if (res.canceled === true && res.cancelationReason !== 'UserBudy') {
+            return;
+        } else if (res.canceled === true) {
+            guiForm(player);
+        };
         const keys = Object.keys(defaultConfig);
-        player.setDynamicProperties({
+        /*player.setDynamicProperties({
             'color1': res.formValues[0],
             'color2': res.formValues[1],
             'prefix': res.formValues[2]
-        });
+        });*/
 
         const updatedConfig = {};
         keys.forEach((key, i) => {
-            updatedConfig[key] = res.formValues[i + 3];
+            updatedConfig[key] = res.formValues[i];
         });
 
         player.setDynamicProperty('guiConfig', JSON.stringify(updatedConfig));
