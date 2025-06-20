@@ -28,7 +28,7 @@ export function setlbCommandHandle(origin, arg) {
             const block = player.dimension.getBlock(blocklocation);
             if (!block.isAir) {
                 setLandingBox(player, block);
-                player.setDynamicProperties('lb_type', 'both');
+                player.setDynamicProperty('lb_type', 'both');
                 return undefined;
             };
         }
