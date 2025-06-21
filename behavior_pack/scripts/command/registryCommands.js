@@ -10,6 +10,7 @@ import { clearPbCommand, clearPbCommandHandle } from './clearPbCommand';
 import { clearLbCommand, clearLbCommandHandle } from './clearLbCommand';
 import { setMMCommand, setMMCommandHandle } from './setmmCommand';
 import { clearMMCommand, clearMMCommandHandle } from './clearmmCommand';
+import { setCPCommand, setCPCommandHandle } from './setcpCommand';
 
 const colors = [
     'black', 'dark_blue', 'dark_green', 'dark_aqua', 'dark_red',
@@ -33,7 +34,8 @@ system.beforeEvents.startup.subscribe((init) => {
         [clearPbCommand, clearPbCommandHandle],
         [clearLbCommand, clearLbCommandHandle],
         [setMMCommand, setMMCommandHandle],
-        [clearMMCommand, clearMMCommandHandle]
+        [clearMMCommand, clearMMCommandHandle],
+        [setCPCommand, setCPCommandHandle]
     ];
 
     init.customCommandRegistry.registerEnum('mpk:colors', colors);
