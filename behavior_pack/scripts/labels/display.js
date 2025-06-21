@@ -73,7 +73,7 @@ function initializeDisplay(labels, decorateOptions, angleLine, player) {
     display.lastLanding = formatVec3('Last Landing ', labels.lastLanding);
     display.hit = formatVec3('Hit ', labels.hit);
     display.jump = formatVec3('Jump ', labels.jump);
-    display.speed = formatVec3('Speed (b/t)', labels.speed);
+    display.speed = formatVec3('Speed (b/t) ', labels.speed);
     display.speedVector = formatVector('Speed Vector', labels.speedVector);
     display.tier = formatValue('Tier', labels.tier);
     display.airtime = formatValue('Airtime', labels.airtime);

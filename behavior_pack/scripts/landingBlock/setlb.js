@@ -2,6 +2,7 @@ import { world } from '@minecraft/server';
 import { sendMessage } from '../util/message';
 import { setProperties } from '../util/property';
 import { getBoxfromCollision, isCollidableBlock } from '../util/blockCollision';
+import { getBoxWithWallCheck } from '../util/walledBlock';
 
 /**
  * Set MM box
@@ -10,7 +11,7 @@ import { getBoxfromCollision, isCollidableBlock } from '../util/blockCollision';
  * @returns 
  */
 export function setMMBox(player, block) {
-    const lb = getBoxfromCollision(isCollidableBlock(block), block);
+    const lb = getBoxWithWallCheck(block, getBoxfromCollision(isCollidableBlock(block), block));
     if (lb === false) return sendMessage(player, 'Invalid Block!');
 
     const mmBox = {
@@ -45,7 +46,7 @@ export function setMMBox(player, block) {
  * @returns 
  */
 export function setLandingBox(player, block) {
-    const lb = getBoxfromCollision(isCollidableBlock(block), block);
+    const lb = getBoxWithWallCheck(block, getBoxfromCollision(isCollidableBlock(block), block));
     if (lb === false) return sendMessage(player, 'Invalid Block!');
 
     /*
