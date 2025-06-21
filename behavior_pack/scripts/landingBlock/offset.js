@@ -1,6 +1,36 @@
 import { getProperties, setProperties } from '../util/property';
 import { sendMessage } from '../util/message';
 
+function getNearestX(target, positions) {
+    let nearest = null;
+    let minDx = Infinity;
+
+    for (const pos of positions) {
+        const dx = Math.abs(target - pos.x);
+        if (dx < minDx) {
+            minDx = dx;
+            nearest = pos;
+        }
+    }
+
+    return nearest.x;
+}
+
+function getNearestZ(target, positions) {
+    let nearest = null;
+    let minDz = Infinity;
+
+    for (const pos of positions) {
+        const dz = Math.abs(target - pos.z);
+        if (dz < minDz) {
+            minDz = dz;
+            nearest = pos;
+        }
+    }
+
+    return nearest.z;
+}
+
 export function checkMMoffset(player) {
     const props = getProperties(player, 'current');
     const tbf_props = getProperties(player, 'tbf');
@@ -20,33 +50,14 @@ export function checkMMoffset(player) {
             { x: mmEnd.x, y: mmEnd.y, z: mmStart.z }
         ];
 
-        let nearest = null;
-        let minDistance = Infinity;
+        const nearestX = getNearestX(props.loc.x, positions);
+        const nearestZ = getNearestZ(tbf_props.loc.z, positions);
 
-        for (const pos of positions) {
-            const dx = props.loc.x - pos.x;
-            const dz = props.loc.z - pos.z;
-            const distSq = dx * dx + dz * dz;
+        const isInX = (mmStart.x < props.loc.x && props.loc.x < mmEnd.x) || (props.loc.x < mmStart.x && mmEnd.x < props.loc.x);
+        const isInZ = (mmStart.z < tbf_props.loc.z && tbf_props.loc.z < mmEnd.z) || (tbf_props.loc.z < mmStart.z && mmEnd.z < tbf_props.loc.z);
 
-            if (distSq < minDistance) {
-                minDistance = distSq;
-                nearest = pos;
-            }
-        }
-
-        const center = {
-            x: (mmStart.x + mmEnd.x) / 2,
-            y: (mmStart.y + mmEnd.y) / 2,
-            z: (mmStart.z + mmEnd.z) / 2,
-        };
-
-        const z_source = tbf_props.loc.z;
-
-        const isInX = (nearest.x < props.loc.x && props.loc.x < center.x) || (props.loc.x < nearest.x && center.x < props.loc.x);
-        const isInZ = (nearest.z < z_source && z_source < center.z) || (z_source < nearest.z && center.z < z_source);
-
-        offset_z = isInZ ? nearest.z > z_source ? nearest.z - z_source : z_source - nearest.z : z_source > nearest.z ? nearest.z - z_source : z_source - nearest.z;
-        offset_x = isInX ? nearest.x > tbf_props.loc.x ? nearest.x - tbf_props.loc.x : tbf_props.loc.x - nearest.x : tbf_props.loc.x > nearest.x ? nearest.x - tbf_props.loc.x : tbf_props.loc.x - nearest.x;
+        offset_z = isInZ ? nearestZ > tbf_props.loc.z ? nearestZ - tbf_props.loc.z : tbf_props.loc.z - nearestZ : tbf_props.loc.z > nearestZ ? nearestZ - tbf_props.loc.z : tbf_props.loc.z - nearestZ;
+        offset_x = isInX ? nearestX > tbf_props.loc.x ? nearestX - tbf_props.loc.x : tbf_props.loc.x - nearestX : tbf_props.loc.x > nearestX ? nearestX - tbf_props.loc.x : tbf_props.loc.x - nearestX;
 
         setProperties(player, 'lb', {
             'mm_x': offset_x,
@@ -65,8 +76,8 @@ export function checkOffset(player) {
     const lb_type = player.getDynamicProperty('lb_type');
     const inv_x = player.getDynamicProperty('inv_x');
     const inv_z = player.getDynamicProperty('inv_z');
-    const newLb = Math.round(props.loc.y * 100000) <= Math.round(boxEnd.y * 100000) && Math.round(tbf_props.loc.y * 100000) > Math.round(boxEnd.y * 100000);
-    const oldLb = Math.round(props.loc.y * 100000) <= Math.round(lb.y * 100000) && Math.round(tbf_props.loc.y * 100000) > Math.round(lb.y * 100000);
+    const newLb = Math.round(props.loc.y * 10000) <= Math.round(boxEnd.y * 10000) && Math.round(tbf_props.loc.y * 10000) > Math.round(boxEnd.y * 10000);
+    const oldLb = Math.round(props.loc.y * 10000) <= Math.round(lb.y * 10000) && Math.round(tbf_props.loc.y * 10000) > Math.round(lb.y * 10000);
 
     if (Math.abs(props.loc.x - tbf_props.loc.x) > 1 || Math.abs(props.loc.z - tbf_props.loc.z) > 1) return;
 
@@ -78,20 +89,20 @@ export function checkOffset(player) {
         if (boxStart.y === 500 || boxEnd.y === 500) return;
     }
 
-    if (oldLb || newLb) {
-        let offset_x;
-        let offset_z;
+    const z_source = lb_type === 'zneo' ? ttbf_props.loc.z : tbf_props.loc.z;
+
+    if (oldLb) {
         let old_offset_x;
         let old_offset_z;
 
-        const old_z_source = lb_type === 'zneo' ? ttbf_props.loc.z : tbf_props.loc.z;
-        old_offset_z = inv_z ? (old_z_source - lb.z) : (lb.z - old_z_source);
+        old_offset_z = inv_z ? (z_source - lb.z) : (lb.z - z_source);
         old_offset_x = inv_x ? (tbf_props.loc.x - lb.x) : (lb.x - tbf_props.loc.x);
 
-        if (lb_type === 'zneo') {
-            boxStart.z += 0.6;
-            boxEnd.z -= 0.6;
-        }
+        showOffset(player, old_offset_x, old_offset_z);
+    }
+    if (newLb) {
+        let offset_x;
+        let offset_z;
 
         const positions = [
             boxStart,
@@ -100,35 +111,15 @@ export function checkOffset(player) {
             { x: boxEnd.x, y: boxEnd.y, z: boxStart.z }
         ];
 
-        let nearest = null;
-        let minDistance = Infinity;
+        const nearestX = getNearestX(props.loc.x, positions);
+        const nearestZ = getNearestZ(z_source, positions);
 
-        for (const pos of positions) {
-            const dx = props.loc.x - pos.x;
-            const dz = props.loc.z - pos.z;
-            const distSq = dx * dx + dz * dz;
+        const isInX = (boxStart.x < props.loc.x && props.loc.x < boxEnd.x) || (props.loc.x < boxStart.x && boxEnd.x < props.loc.x);
+        const isInZ = (boxStart.z < z_source && z_source < boxEnd.z) || (z_source < boxStart.z && boxEnd.z < z_source);
 
-            if (distSq < minDistance) {
-                minDistance = distSq;
-                nearest = pos;
-            }
-        }
+        offset_z = isInZ ? nearestZ > z_source ? nearestZ - z_source : z_source - nearestZ : z_source > nearestZ ? nearestZ - z_source : z_source - nearestZ;
+        offset_x = isInX ? nearestX > tbf_props.loc.x ? nearestX - tbf_props.loc.x : tbf_props.loc.x - nearestX : tbf_props.loc.x > nearestX ? nearestX - tbf_props.loc.x : tbf_props.loc.x - nearestX;
 
-        const center = {
-            x: (boxStart.x + boxEnd.x) / 2,
-            y: (boxStart.y + boxEnd.y) / 2,
-            z: (boxStart.z + boxEnd.z) / 2,
-        };
-
-        const z_source = tbf_props.loc.z;
-
-        const isInX = (nearest.x < props.loc.x && props.loc.x < center.x) || (props.loc.x < nearest.x && center.x < props.loc.x);
-        const isInZ = (nearest.z < z_source && z_source < center.z) || (z_source < nearest.z && center.z < z_source);
-
-        offset_z = isInZ ? nearest.z > z_source ? nearest.z - z_source : z_source - nearest.z : z_source > nearest.z ? nearest.z - z_source : z_source - nearest.z;
-        offset_x = isInX ? nearest.x > tbf_props.loc.x ? nearest.x - tbf_props.loc.x : tbf_props.loc.x - nearest.x : tbf_props.loc.x > nearest.x ? nearest.x - tbf_props.loc.x : tbf_props.loc.x - nearest.x;
-
-        showOffset(player, old_offset_x, old_offset_z);
         showOffset(player, offset_x, offset_z);
     }
 }

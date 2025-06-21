@@ -13,6 +13,7 @@ import './form/settings';
 import './labels/label';
 import './util/blockCollision';
 import './command/registryCommands';
+import './util/walledBlock'
 
 world.afterEvents.worldLoad.subscribe(() => {
     system.runInterval(() => {
