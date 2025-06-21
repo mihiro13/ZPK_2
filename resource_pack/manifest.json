@@ -1,0 +1,31 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "A addon for parkour",
+        "name": "ZPK Mod 2 [RP]",
+        "uuid": "643aebe5-2a69-41ad-a6f5-ece94e4dd35f",
+        "version": [ 1, 2, 0 ],
+        "min_engine_version": [ 1, 21, 90 ]
+    },
+    "modules": [
+        {
+            "type": "resources",
+            "uuid": "5a52b857-4652-4191-9ee3-c8b8c642276d",
+            "version": [ 1, 2, 0 ]
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "b764895e-cfe4-43dc-a764-4a0bfd92a00d",
+            "version": [ 1, 2, 0 ]
+        }
+    ],
+    "metadata": {
+        "authors": [
+            "mihiro13"
+        ],
+        "url": "https://github.com/mihiro13",
+        "license": "MIT",
+        "product_type": "addon"
+    }
+}

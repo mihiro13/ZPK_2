@@ -60,7 +60,7 @@ function initializeDisplay(labels, decorateOptions, angleLine, player) {
 
     display.loc = formatVec3('', labels.loc);
     display.pitch = formatScalar('P', labels.pitch, '°');
-    display.yaw = formatScalar('F', labels.yaw, '°');
+    display.yaw = formatScalar('F', labels.yaw, `° §${color1}${(labels.yaw < 45 && labels.yaw > -45) || (labels.yaw > 135 || labels.yaw < -135) ? 'Z' : 'X'}`);
     display.ja = formatScalar('Jump Angle', labels.ja, '°');
     display.ha = formatScalar('Hit Angle', labels.ha, '°');
     display.secondTurn = formatValue('Second Turn', labels.secondTurn);

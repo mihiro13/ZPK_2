@@ -20,6 +20,10 @@ const itemData = {
     }
 };
 
+export const prohibitedItem = [
+    itemData.practice_enable.typeId, itemData.practice_disable.typeId, itemData.practice_checkpoint.typeId, itemData.lobby.typeId
+];
+
 world.afterEvents.itemUse.subscribe(ev => {
     const { source: player, itemStack } = ev;
     if (itemStack.typeId === itemData.practice_checkpoint.typeId) {
