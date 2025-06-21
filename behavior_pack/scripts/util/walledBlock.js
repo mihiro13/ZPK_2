@@ -43,26 +43,3 @@ export function getBoxWithWallCheck(block, box) {
     }
     return newBox;
 }
-
-world.beforeEvents.playerInteractWithBlock.subscribe((ev) => {
-    const { block, player, itemStack, isFirstEvent } = ev;
-    if (isFirstEvent && itemStack?.typeId === 'minecraft:diamond_sword') {
-        const lb = checkBlockWalled(block, getBoxfromCollision(isCollidableBlock(block), block));
-        const landingBox = {
-            start: {
-                x: block.location.x + lb.start.x,
-                y: block.location.y + lb.start.y,
-                z: block.location.z + lb.start.z,
-            },
-            end: {
-                x: block.location.x + lb.end.x,
-                y: block.location.y + lb.end.y,
-                z: block.location.z + lb.end.z,
-            }
-        };
-        player.setDynamicProperties({
-            'boxStart': landingBox.start,
-            'boxEnd': landingBox.end
-        });
-    }
-})
