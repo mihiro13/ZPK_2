@@ -1,18 +1,16 @@
 import { CommandPermissionLevel, CustomCommandParamType, Player } from '@minecraft/server';
-import { setLandingBox } from '../landingBlock/setlb';
+import { setMMBox } from '../landingBlock/setlb';
 
-const lb_types = ['x', 'z', 'both', 'zneo'];
-
-export const setlbCommand = {
-    name: 'mpk:setlb',
-    description: 'Set landing block.',
+export const setMMCommand = {
+    name: 'mpk:setmm',
+    description: 'Set momentum block',
     permissionLevel: CommandPermissionLevel.Any,
     optionalParameters: [
         { type: CustomCommandParamType.String, name: 'param' }
     ]
 };
 
-export function setlbCommandHandle(origin, arg) {
+export function setMMCommandHandle(origin, arg) {
     if (!origin.sourceEntity || origin.sourceEntity.typeId !== 'minecraft:player') return undefined;
     /** @type { Player } */
     const player = origin.sourceEntity;
@@ -27,8 +25,7 @@ export function setlbCommandHandle(origin, arg) {
             };
             const block = player.dimension.getBlock(blocklocation);
             if (!block.isAir) {
-                setLandingBox(player, block);
-                player.setDynamicProperty('lb_type', 'both');
+                setMMBox(player, block);
                 return undefined;
             };
         }
@@ -36,9 +33,7 @@ export function setlbCommandHandle(origin, arg) {
     } else {
         const location = player.location;
         const bottomBlock = player.dimension.getBlock({ x: location.x, y: location.y - 1, z: location.z });
-        const lb_type = lb_types.indexOf(arg) === -1 ? 'both' : arg;
-        setLandingBox(player, bottomBlock);
-        player.setDynamicProperty('lb_type', lb_type);
+        setMMBox(player, bottomBlock);
         return undefined;
     }
 };

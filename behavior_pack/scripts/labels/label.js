@@ -2,7 +2,7 @@ import { world } from '@minecraft/server';
 import { getProperties, setProperties } from '../util/property';
 
 const defaultValue = {
-    'loc': { x: 0, y: 0, z: 0 },
+    'loc': { x: 0, y: -100, z: 0 },
     'pitch': 0,
     'yaw': 0,
     'ja': 0,
@@ -17,6 +17,7 @@ const defaultValue = {
     'speedVector': { speed: 0, facing: 0 },
     'tier': 0,
     'airtime': 0,
+    'mm': { x: -1, z: -1 },
     'offset': { total: -1, x: -1, z: -1 },
     'pb': { total: -1, x: -1, z: -1 },
     'lastInput': '',
@@ -36,6 +37,8 @@ world.afterEvents.playerSpawn.subscribe((ev) => {
 function initProps(player) {
     setProperties(player, 'label', defaultValue);
     setProperties(player, 'lb', {
+        'mm_x': -1,
+        'mm_z': -1,
         'offset': -1,
         'offset_x': -1,
         'offset_z': -1,
@@ -113,6 +116,9 @@ export function updateLables(player) {
 
     // Offset
     updatedLabels.offset = { total: lb.offset, x: lb.offset_x, z: lb.offset_z };
+
+    // MM
+    updatedLabels.mm = { x: lb.mm_x, z: lb.mm_z };
 
     // PB
     updatedLabels.pb = { total: lb.pb, x: lb.pb_x, z: lb.pb_z };

@@ -1,7 +1,7 @@
 import { system, world } from '@minecraft/server';
 import { setProperties, getProperties } from './util/property';
 import { updateLables } from './labels/label';
-import { checkOffset } from './landingBlock/offset';
+import { checkMMoffset, checkOffset } from './landingBlock/offset';
 import { displayLabels } from './labels/display';
 import './server/practice';
 import './server/checkpoint';
@@ -55,6 +55,7 @@ world.afterEvents.worldLoad.subscribe(() => {
             setProperties(player, 'ttbf', tbf);
             updateLables(player);
             checkOffset(player);
+            checkMMoffset(player);
             displayLabels(player);
             continue;
         }

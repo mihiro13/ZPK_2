@@ -5,7 +5,6 @@ const tbfProps = new Map();
 const ttbfProps = new Map();
 const lbProps = new Map();
 const labelProps = new Map();
-const peroperties = ['loc', 'yaw', 'vel', 'isSprinting', 'isJumping', 'isOnGround', 'input'];
 
 const defaultProps = {
     'loc': { x: 0, y: 0, z: 0 },
@@ -19,15 +18,6 @@ const defaultProps = {
     'input': '',
     'walktime': 0,
     'jumpTickInput': ''
-};
-
-const defaultLBProps = {
-    'offset': -1,
-    'offset_x': -1,
-    'offset_z': -1,
-    'pb': -1,
-    'pb_x': -1,
-    'pb_z': -1,
 };
 
 /**

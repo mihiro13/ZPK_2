@@ -1,5 +1,4 @@
-import { world, Block, Player } from '@minecraft/server';
-import { sendMessage } from './message';
+import { Block } from '@minecraft/server';
 import { checkBlockConnection } from './blockConnection';
 
 /**
@@ -19,7 +18,7 @@ import { checkBlockConnection } from './blockConnection';
  * @param {Block} block 
  * @returns {collidableBlockResult}
  */
-function isCollidableBlock(block) {
+export function isCollidableBlock(block) {
     if (!(block instanceof Block)) return { result: false, type: 'none' };
 
     if (block.isAir || block.isLiquid) return { result: false, type: 'none' };
@@ -101,7 +100,7 @@ function isCollidableBlock(block) {
  * @param {Block} block
  * @returns {Box | false}
 */
-function getBoxfromCollision(result, block) {
+export function getBoxfromCollision(result, block) {
     if (!result.result) return false;
 
     const permutation = block.permutation;
@@ -500,80 +499,3 @@ function getBoxfromCollision(result, block) {
 
     return collisionHandlers[result.type]?.();
 }
-
-/**
- * Set landing box
- * @param {Player} player 
- * @param {Block} block 
- * @returns 
- */
-export function setLandingBox(player, block) {
-    const lb = getBoxfromCollision(isCollidableBlock(block), block);
-    if (lb === false) return sendMessage(player, 'Invalid Block!');
-    /*
-    const center = {
-        x: block.location.x + ((lb.end.x - 0.3) + (lb.start.x + 0.3)) / 2,
-        y: block.location.y + ((lb.end.y) + (lb.start.y + 1.8)) / 2,
-        z: block.location.z + ((lb.end.z - 0.3) + (lb.start.z + 0.3)) / 2,
-    };
-    const start = {
-        x: center.x - ((lb.end.x - 0.3) - (lb.start.x + 0.3)) / 2,
-        y: center.y - ((lb.end.y) - (lb.start.y + 1.8)) / 2,
-        z: center.z - ((lb.end.z - 0.3) - (lb.start.z + 0.3)) / 2
-    };
-    const bound = {
-        x: (lb.end.x - lb.start.x - 0.6),
-        y: (lb.end.y - lb.start.y - 1.8),
-        z: (lb.end.z - lb.start.z - 0.6)
-    };
-    const lbBox = new DebugBox(start);
-    lbBox.bound = bound;
-    lbBox.color = { red: 0, green: 0, blue: 1 };
-    lbBox.timeLeft = 99999999;
-    debugDrawer.addShape(lbBox);
-    */
-
-    const landingBox = {
-        start: {
-            x: block.location.x + lb.start.x,
-            y: block.location.y + lb.start.y,
-            z: block.location.z + lb.start.z,
-        },
-        end: {
-            x: block.location.x + lb.end.x,
-            y: block.location.y + lb.end.y,
-            z: block.location.z + lb.end.z,
-        }
-    };
-    if (!block || !isCollidableBlock(block).result) {
-        sendMessage(player, 'Invalid Block!');
-        return;
-    } else {
-        player.setDynamicProperties({
-            'boxStart': landingBox.start,
-            'boxEnd': landingBox.end
-        });
-        sendMessage(player, 'Successfully set landing block! §r§7(' + block.typeId + ')');
-        return;
-    }
-};
-
-
-world.beforeEvents.playerInteractWithBlock.subscribe((ev) => {
-    const { itemStack, player, block, isFirstEvent } = ev;
-
-    if (isFirstEvent && itemStack?.typeId === 'minecraft:diamond_sword') {
-        debugDrawer.removeAll();
-        setLandingBox(player, block);
-        return;
-    }
-
-    if (isFirstEvent && itemStack?.typeId === 'minecraft:diamond_pickaxe') {
-        sendMessage(player, 'deleted')
-        debugDrawer.removeAll();
-    }
-
-    if (isFirstEvent && itemStack?.typeId === 'minecraft:diamond_hoe') {
-        sendMessage(player, JSON.stringify(block.permutation.getAllStates(), null, 2))
-    }
-});

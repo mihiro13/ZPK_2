@@ -47,6 +47,10 @@ function initializeDisplay(labels, decorateOptions, angleLine, player) {
         return `\n§r§${color1}${label}${separate}§${color2}${value.speed.toFixed(digit)}§r§${color1}/§r§${color2}${value.facing.toFixed(digit)}`;
     };
 
+    function formatMM(label, value) {
+        return `\n§r§${color1}${label} X${separate}§${color2}${value.x.toFixed(digit)} §r§${color1}Z${separate}§${color2}${value.z.toFixed(digit)}`;
+    };
+
     function formatOffset(label, value) {
         const lb_type = player.getDynamicProperty('lb_type');
         if (lb_type === 'both' || lb_type === 'zneo') {
@@ -73,6 +77,7 @@ function initializeDisplay(labels, decorateOptions, angleLine, player) {
     display.speedVector = formatVector('Speed Vector', labels.speedVector);
     display.tier = formatValue('Tier', labels.tier);
     display.airtime = formatValue('Airtime', labels.airtime);
+    display.mm = formatMM('MM', labels.mm);
     display.offset = formatOffset('Offset', labels.offset);
     display.pb = formatOffset('PB', labels.pb);
     display.lastInput = formatValue('Last Input', labels.lastInput);
@@ -98,6 +103,7 @@ const defaultConfig = {
     'speedVector': false,
     'tier': false,
     'airtime': false,
+    'mm': false,
     'offset': true,
     'pb': true,
     'lastInput': false,
