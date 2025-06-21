@@ -1,5 +1,6 @@
 import { CommandPermissionLevel, CustomCommandParamType, Player } from '@minecraft/server';
 import { setLandingBox } from '../landingBlock/setlb';
+import { getBoxfromCollision, isCollidableBlock } from '../util/blockCollision';
 
 const lb_types = ['x', 'z', 'both', 'zneo'];
 
@@ -35,7 +36,7 @@ export function setlbCommandHandle(origin, arg) {
         return { message: 'Please look at valid block', status: 0 };
     } else {
         const location = player.location;
-        const bottomBlock = player.dimension.getBlock({ x: location.x, y: location.y - 1, z: location.z });
+        const bottomBlock = player.dimension.getBlock({ x: location.x, y: location.y - 0.01, z: location.z });
         const lb_type = lb_types.indexOf(arg) === -1 ? 'both' : arg;
         setLandingBox(player, bottomBlock);
         player.setDynamicProperty('lb_type', lb_type);
