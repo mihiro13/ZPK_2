@@ -8,6 +8,7 @@ import { guiCommand, guiCommandHandle } from './guiCommand';
 import { configCommand, configCommandHandle } from './configCommand';
 import { clearPbCommand, clearPbCommandHandle } from './clearPbCommand';
 import { clearLbCommand, clearLbCommandHandle } from './clearLbCommand';
+import { setMMCommand, setMMCommandHandle } from './setmmCommand';
 
 const colors = [
     'black', 'dark_blue', 'dark_green', 'dark_aqua', 'dark_red',
@@ -29,7 +30,8 @@ system.beforeEvents.startup.subscribe((init) => {
         [guiCommand, guiCommandHandle],
         [configCommand, configCommandHandle],
         [clearPbCommand, clearPbCommandHandle],
-        [clearLbCommand, clearLbCommandHandle]
+        [clearLbCommand, clearLbCommandHandle],
+        [setMMCommand, setMMCommandHandle]
     ];
 
     init.customCommandRegistry.registerEnum('mpk:colors', colors);
