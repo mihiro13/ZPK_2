@@ -1,4 +1,4 @@
-import { system, world } from '@minecraft/server';
+import { world } from '@minecraft/server';
 import { getProperties, setProperties } from '../util/property';
 
 const defaultValue = {
@@ -135,12 +135,12 @@ export function updateLables(player) {
             updatedLabels.lastTiming = `HH ${tbf.walktime}t`;
         } else if (current.jumpTickInput.includes('S')) {
             updatedLabels.lastTiming = 'BWJam';
-        } else if (current.jumpTickInput.includes('W') && current.isWalkJump === false) updatedLabels.lastTiming = 'Jam';
+        } else if (current.jumpTickInput.includes('W') && current.isWalkJump === false && tbf.input === '') updatedLabels.lastTiming = 'Jam';
     } else {
         if (current.jumpTickInput === '' && tbf.input === '' && current.input !== '' && currentLabels.airtime > 0) {
             updatedLabels.lastTiming = currentLabels.airtime === 1 ? 'Max Pessi' : `Pessi -${currentLabels.airtime}t`;
         } else if (current.jumpTickInput !== '' && tbf.isSprinting === false && current.isWalkJump === true && current.isSprinting) {
-            updatedLabels.lastTiming = currentLabels.airtime === 1 ? 'Max FMM' : `FMM ${currentLabels.airtime}t`;
+            if (tbf.isOnGround === false) updatedLabels.lastTiming = currentLabels.airtime === 1 ? 'Max FMM' : `FMM ${currentLabels.airtime}t`;
         }
     };
 

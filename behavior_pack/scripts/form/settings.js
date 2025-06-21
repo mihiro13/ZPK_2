@@ -1,5 +1,6 @@
 import { PlayerPermissionLevel } from '@minecraft/server';
 import { ModalFormData } from '@minecraft/server-ui';
+import { prohibitedItem } from '../server/practice';
 
 /**
  * @param {Player} player 
@@ -49,9 +50,9 @@ export function settingForm(player) {
 
         if (player.playerPermissionLevel === PlayerPermissionLevel.Operator) {
             player.setDynamicProperties({
-                'cpReturnItem': res.formValues[8],
-                'cpSetItem': res.formValues[9],
-                'gamemodeChanger': res.formValues[10]
+                'cpReturnItem': prohibitedItem.includes(res.formValues[8]) ? checkpointRetuner : res.formValues[8],
+                'cpSetItem': prohibitedItem.includes(res.formValues[9]) ? cpSetItem : res.formValues[9],
+                'gamemodeChanger': prohibitedItem.includes(res.formValues[10]) ? gamemodeChanger : res.formValues[10]
             })
         }
     })

@@ -26,8 +26,8 @@ world.afterEvents.worldLoad.subscribe(() => {
             const tbf = getProperties(player, 'tbf');
             let walktime;
             if (isOnGround === false || input === '') {
-                walktime = 0;
-            } else if (input !== '' && vel.y === 0) {
+                walktime = -1;
+            } else if (input !== '' && isOnGround === true) {
                 walktime = current.walktime + 1;
             };
             let { isWalkJump, jumpTickInput } = current;
