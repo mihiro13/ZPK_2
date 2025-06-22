@@ -44,7 +44,7 @@ function initializeDisplay(labels, decorateOptions, angleLine, player) {
     };
 
     function formatVector(label, value) {
-        return `\n§r§${color1}${label}${separate}§${color2}${value.speed.toFixed(digit)}§r§${color1}/§r§${color2}${value.facing.toFixed(digit)}`;
+        return `\n§r§${color1}${label}${separate}§${color2}${value.speed.toFixed(digit)}§r§${color1}/§r§${color2}${value.facing.toFixed(digit)}°`;
     };
 
     function formatMM(label, value) {
