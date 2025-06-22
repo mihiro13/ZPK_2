@@ -130,7 +130,7 @@ function showOffset(player, offset_x, offset_z) {
     let pb = lbProps.pb ?? -1;
     let pb_x = lbProps.pb_x ?? -1;
     let pb_z = lbProps.pb_z ?? -1;
-    const offset_limit = player.getDynamicProperty('offset_limit') ?? 0.5;
+    const offset_limit = player.getDynamicProperty('offset_limit') ?? 0.7;
     let offset;
 
     //offset_z >= 0 && offset_x <= 0 ==> offset_z * offset_x <= 0
