@@ -4,7 +4,7 @@ import { setCP } from '../server/checkpoint';
 export const setCPCommand = {
     name: 'mpk:setcp',
     description: 'Set checkpoint.',
-    permissionLevel: CommandPermissionLevel.Admin,
+    permissionLevel: CommandPermissionLevel.GameDirectors,
     mandatoryParameters: [
         { type: CustomCommandParamType.PlayerSelector, name: 'victim' },
         { type: CustomCommandParamType.Location, name: 'destination' },
