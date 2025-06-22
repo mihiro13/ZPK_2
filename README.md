@@ -29,7 +29,8 @@
 - Checkpoint  
 そのまま。チェックポイントを設定したり戻ったりできる。  
     - チェックポイントを設定  
-    `/scriptevent zpk:cp x y z yaw pitch`で最も近いプレイヤーにチェックポイントを設定(セレクターが指定されている場合はそのプレイヤー)  
+    `/mpk:setcp セレクター x y z facing pitch` か  
+    `/scriptevent zpk:cp x y z facing pitch` で最も近いプレイヤーにチェックポイントを設定(セレクターが指定されている場合はそのプレイヤー)  
     `Set Checkpoint Item` (デフォルト: エメラルド) を右クリック
     - チェックポイントに戻る  
     `Checkpoint Item` (デフォルト: 赤色の染料) を右クリック
@@ -37,5 +38,3 @@
 練習モードがつかえます。。
 `Practice Item` (スライムボール) を右クリックで開始  
 詳しい説明はカットで
-
-`/mpk:setlb` はたまに変なオフセット帰ってくることがある、あとzneoしんでる
