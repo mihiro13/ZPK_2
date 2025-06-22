@@ -130,9 +130,9 @@ export function updateLables(player) {
     if (hasJumped) {
         if (current.jumpTickInput.includes('A') || current.jumpTickInput.includes('D')) {
             updatedLabels.lastSidestep = 'WDWA';
-        } else updatedLabels.lastSidestep = '';
+        } else updatedLabels.lastSidestep = 'None';
     } else if (tbf.isOnGround === false) {
-        if (currentLabels.lastSidestep === '' && (current.input.includes('A') || current.input.includes('D'))) updatedLabels.lastSidestep = `WAD ${currentLabels.airtime}t`;
+        if (currentLabels.lastSidestep === 'None' && (current.input.includes('A') || current.input.includes('D'))) updatedLabels.lastSidestep = `WAD ${currentLabels.airtime}t`;
     };
 
     // Last Timing
