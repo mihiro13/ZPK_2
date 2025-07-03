@@ -1,4 +1,4 @@
-import { Block, world } from '@minecraft/server';
+import { Block } from '@minecraft/server';
 import { getBoxfromCollision, isCollidableBlock } from './blockCollision';
 
 /**
@@ -27,7 +27,7 @@ export function getBoxWithWallCheck(block, box) {
         const sideUpBlock = block.above(1)[face](1);
         const sideBlockBox = getBoxfromCollision(isCollidableBlock(sideBlock), sideBlock);
         const sideUpBlockBox = getBoxfromCollision(isCollidableBlock(sideUpBlock), sideUpBlock);
-        if (sideBlockBox === false && sideUpBlockBox === false) continue;
+        if ((sideBlockBox === false && sideUpBlockBox === false) || newBox === false) continue;
         const isLargerX = sideBlockBox.start.x >= sideUpBlockBox.start.x && sideBlockBox.end.x <= sideUpBlockBox.end.x;
         const isLargerZ = sideBlockBox.start.z >= sideUpBlockBox.start.z && sideBlockBox.end.z <= sideUpBlockBox.end.z;
 

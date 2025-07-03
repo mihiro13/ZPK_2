@@ -59,10 +59,16 @@ export function checkMMoffset(player) {
         offset_z = isInZ ? nearestZ > tbf_props.loc.z ? nearestZ - tbf_props.loc.z : tbf_props.loc.z - nearestZ : tbf_props.loc.z > nearestZ ? nearestZ - tbf_props.loc.z : tbf_props.loc.z - nearestZ;
         offset_x = isInX ? nearestX > tbf_props.loc.x ? nearestX - tbf_props.loc.x : tbf_props.loc.x - nearestX : tbf_props.loc.x > nearestX ? nearestX - tbf_props.loc.x : tbf_props.loc.x - nearestX;
 
-        setProperties(player, 'lb', {
-            'mm_x': offset_x,
-            'mm_z': offset_z
-        });
+        const offset_limit = player.getDynamicProperty('offset_limit') ?? 0.7;
+        const inXRange = offset_x >= offset_limit * -1 && offset_x <= offset_limit;
+        const inZRange = offset_z >= offset_limit * -1 && offset_z <= offset_limit;
+
+        if (inXRange && inZRange) {
+            setProperties(player, 'lb', {
+                'mm_x': offset_x,
+                'mm_z': offset_z
+            });
+        }
     }
 }
 
@@ -111,10 +117,10 @@ export function checkOffset(player) {
             { x: boxEnd.x, y: boxEnd.y, z: boxStart.z }
         ];
 
-        const nearestX = getNearestX(props.loc.x, positions);
+        const nearestX = getNearestX(tbf_props.loc.x, positions);
         const nearestZ = getNearestZ(z_source, positions);
 
-        const isInX = (boxStart.x < props.loc.x && props.loc.x < boxEnd.x) || (props.loc.x < boxStart.x && boxEnd.x < props.loc.x);
+        const isInX = (boxStart.x < tbf_props.loc.x && tbf_props.loc.x < boxEnd.x) || (tbf_props.loc.x < boxStart.x && boxEnd.x < tbf_props.loc.x);
         const isInZ = (boxStart.z < z_source && z_source < boxEnd.z) || (z_source < boxStart.z && boxEnd.z < z_source);
 
         offset_z = isInZ ? nearestZ > z_source ? nearestZ - z_source : z_source - nearestZ : z_source > nearestZ ? nearestZ - z_source : z_source - nearestZ;

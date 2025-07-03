@@ -14,8 +14,8 @@ system.afterEvents.scriptEventReceive.subscribe((ev) => {
 
     const args = splitStr(message).map(Number);
     if (id === 'zpk:cp') {
-        if (args.includes(NaN)) return;
-        setCP(player, { x: args[0], y: args[1], z: args[2]}, { x: args[4], y: args[3] });
+        if (args.length < 5 || args.includes(NaN)) return;
+        setCP(player, { x: args[0], y: args[1], z: args[2]}, { x: args[4], y: args[3] }, false);
     }
 });
 
@@ -42,11 +42,11 @@ world.afterEvents.itemUse.subscribe((ev) => {
     }
 });
 
-export function setCP(player, coord, rotation) {
+export function setCP(player, coord, rotation, showMessage = true) {
     if (player?.typeId !== 'minecraft:player') return;
     player.setDynamicProperties({
         'cp_location': coord,
         'cp_rotation': { ...rotation, z: 0 }
     });
-    sendMessage(player, 'Set Checkpoint')
+    if (showMessage) sendMessage(player, 'Set Checkpoint');
 }

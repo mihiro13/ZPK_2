@@ -49,6 +49,7 @@ function practice(player) {
     if (!container) return;
     if (isPracticing) {
         player.setDynamicProperty('practice', false);
+        player.removeTag('practice');
         const checkpointSlot = getItemFirstSlot(container, itemData.practice_checkpoint.typeId);
         const disableSlot = getItemFirstSlot(container, itemData.practice_disable.typeId);
         container.setItem(checkpointSlot, initItem(itemData.lobby));
@@ -58,6 +59,7 @@ function practice(player) {
     } else {
         if (!player.isOnGround) return;
         player.setDynamicProperty('practice', true);
+        player.addTag('practice');
         const checkpointSlot = getItemFirstSlot(container, itemData.lobby.typeId);
         const enableSlot = getItemFirstSlot(container, itemData.practice_enable.typeId);
         container.setItem(checkpointSlot, initItem(itemData.practice_checkpoint));

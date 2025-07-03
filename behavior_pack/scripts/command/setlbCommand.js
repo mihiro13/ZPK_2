@@ -1,6 +1,7 @@
 import { CommandPermissionLevel, CustomCommandParamType, Player } from '@minecraft/server';
 import { setLandingBox } from '../landingBlock/setlb';
-import { getBoxfromCollision, isCollidableBlock } from '../util/blockCollision';
+import { setProperties } from '../util/property';
+import { sendMessage } from '../util/message';
 
 const lb_types = ['x', 'z', 'both', 'zneo'];
 
@@ -9,7 +10,7 @@ export const setlbCommand = {
     description: 'Set landing block.',
     permissionLevel: CommandPermissionLevel.Any,
     optionalParameters: [
-        { type: CustomCommandParamType.String, name: 'param' }
+        { type: CustomCommandParamType.Enum, name: 'mpk:lbtypes' }
     ]
 };
 
@@ -34,6 +35,24 @@ export function setlbCommandHandle(origin, arg) {
             };
         }
         return { message: 'Please look at valid block', status: 0 };
+    } else if (arg === 'stand') {
+        player.setDynamicProperties({
+            'lb': player.location,
+            'lb_type': 'both',
+            'boxStart': { x: 0, y: 500, z: 0 },
+            'boxEnd': { x: 0, y: 500, z: 0 }
+        });
+        setProperties(player, 'lb', {
+            'offset': -1,
+            'offset_x': -1,
+            'offset_z': -1,
+            'pb': -1,
+            'pb_x': -1,
+            'pb_z': -1
+        });
+
+        sendMessage(player, 'Clear PB and Set landing block successfully!');
+        return undefined;
     } else {
         const location = player.location;
         const bottomBlock = player.dimension.getBlock({ x: location.x, y: location.y - 0.01, z: location.z });
