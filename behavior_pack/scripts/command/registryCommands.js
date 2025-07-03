@@ -17,9 +17,13 @@ const colors = [
     'dark_purple', 'gold', 'gray', 'dark_gray', 'blue',
     'green', 'aqua', 'red', 'light_purple', 'yellow',
     'white', 'minecoin_gold', 'material_quartz', 'material_iron',
-    'obfuscated', 'bold', 'material_netherite', 'material_redstone', 'material_copper',
-    'italic', 'material_gold', 'reset', 'material_emerald', 'material_diamond',
+    'material_netherite', 'obfuscated', 'bold', 'material_redstone', 'material_copper',
+    'italic', 'material_gold', 'material_emerald', 'reset', 'material_diamond',
     'material_lapis', 'material_amethyst', 'material_resin'
+];
+
+const lbTypes = [
+    'target', 'both', 'x', 'z', 'zneo', 'stand'
 ];
 
 system.beforeEvents.startup.subscribe((init) => {
@@ -39,6 +43,7 @@ system.beforeEvents.startup.subscribe((init) => {
     ];
 
     init.customCommandRegistry.registerEnum('mpk:colors', colors);
+    init.customCommandRegistry.registerEnum('mpk:lbtypes', lbTypes);
 
     for (const [cmd, handler] of commandList) {
         init.customCommandRegistry.registerCommand(cmd, handler);

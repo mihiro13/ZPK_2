@@ -53,7 +53,7 @@ export function updateLables(player) {
     const tbf = getProperties(player, 'tbf');
     const ttbf = getProperties(player, 'ttbf');
     const lb = getProperties(player, 'lb');
-    const isJumpTick = ttbf.isOnGround === true && tbf.isJumping === true && current.isOnGround === false;
+    const isJumpTick = ttbf.isOnGround === true && current.isJumping === true && current.isOnGround === false;
     const hasJumped = tbf.isOnGround === true && current.isJumping === true && current.isOnGround === false;
     const currentLabels = getProperties(player, 'label');
     const updatedLabels = {};
@@ -80,7 +80,8 @@ export function updateLables(player) {
     };
 
     // Last Turning
-    updatedLabels.lastTurning = current.yaw - tbf.yaw;
+    const lastTurning = current.yaw - tbf.yaw;
+    if (lastTurning !== 0) updatedLabels.lastTurning = current.yaw - tbf.yaw;
 
     // Last Landing, Hit and Hit Angle
     if (current.isOnGround === true && tbf.isOnGround === false) {

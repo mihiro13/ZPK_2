@@ -47,7 +47,10 @@ export function setMMBox(player, block) {
  */
 export function setLandingBox(player, block) {
     const lb = getBoxWithWallCheck(block, getBoxfromCollision(isCollidableBlock(block), block));
-    if (lb === false) return sendMessage(player, 'Invalid Block!');
+    if (lb === false) {
+        sendMessage(player, 'Invalid Block!');
+        return false;
+    }
 
     /*
     const center = {
@@ -86,14 +89,15 @@ export function setLandingBox(player, block) {
     };
     if (!block || !isCollidableBlock(block).result) {
         sendMessage(player, 'Invalid Block!');
-        return;
+        return false;
     } else {
         player.setDynamicProperties({
+            'lb': { x: 0, y: 500, z: 0 },
             'boxStart': landingBox.start,
             'boxEnd': landingBox.end
         });
         sendMessage(player, 'Successfully set landing block! §r§7(' + block.typeId + ')');
-        return;
+        return true;
     }
 };
 
