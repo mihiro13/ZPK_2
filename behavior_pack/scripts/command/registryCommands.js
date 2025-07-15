@@ -23,7 +23,7 @@ const colors = [
 ];
 
 const lbTypes = [
-    'target', 'both', 'x', 'z', 'zneo', 'stand'
+    'target', 'both', 'x', 'z', 'zneo', 'on'
 ];
 
 system.beforeEvents.startup.subscribe((init) => {

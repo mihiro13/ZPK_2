@@ -39,7 +39,7 @@ export function isCollidableBlock(block) {
     if (id.endsWith('anvil')) return { result: true, type: 'anvil' };
     if (id === 'end_rod' || id === 'lightning_rod') return { result: true, type: 'endrod' };
     if (id.endsWith('stairs')) return { result: true, type: 'stair' };
-    if (id.endsWith('head') || id.endsWith('head')) return { result: true, type: 'head' };
+    if (id.endsWith('head') || id.endsWith('skull')) return { result: true, type: 'head' };
     if (id === 'flower_pot') return { result: true, type: 'flowerpot' };
     if ((id.endsWith('lantern'))) return { result: true, type: 'lantern' };
     if (id === 'heavy_core' || id === 'conduit') return { result: true, type: 'conduit' };
