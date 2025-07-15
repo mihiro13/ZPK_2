@@ -35,7 +35,7 @@ export function setlbCommandHandle(origin, arg) {
             };
         }
         return { message: 'Please look at valid block', status: 0 };
-    } else if (arg === 'stand') {
+    } else if (arg === 'on') {
         player.setDynamicProperties({
             'lb': player.location,
             'lb_type': 'both',
