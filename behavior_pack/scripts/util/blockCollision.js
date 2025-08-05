@@ -68,7 +68,8 @@ export function isCollidableBlock(block) {
     if (id === 'sniffer_egg') return { result: true, type: 'sniffer_egg' };
     if (id === 'dried_ghast') return { result: true, type: 'dried_ghast' };
     if (id === 'chorus_plant') return { result: true, type: 'chorus_plant' };
-    if (id.endsWith('glass') || id.endsWith('shulker_box') || id === 'ice' || id === 'mangrove_roots' || id === 'composter' || id.includes('leaves')) return { result: true, type: 'block' };
+    if (id.endsWith('_shelf')) return { result: true, type: 'shelf' };
+    if (id.endsWith('glass') || id.endsWith('shulker_box') || id === 'ice' || id === 'mangrove_roots' || id === 'composter' || id.includes('leaves') || id.endsWith('statue')) return { result: true, type: 'block' };
 
     if (block.isSolid) return { result: true, type: 'block' };
 
@@ -238,6 +239,26 @@ export function getBoxfromCollision(result, block) {
 
                     [box.start[axis], box.end[axis]] = [newStartSide, newEndSide];
                 }
+            }
+            return box;
+        },
+        'shelf': () => {
+            const box = { start: { x: -0.3, y: -1.8, z: 0.3875 }, end: { x: 1.3, y: 1, z: 1.3 } };
+            const direction = permutation.getState('minecraft:cardinal_direction');
+            if (direction === 'south') {
+                const newStartSide = - box.end.z + 1;
+                const newEndSide = 1 - box.start.z;
+                [box.start.z, box.end.z] = [newStartSide, newEndSide];
+            } else if (direction !== 'north') {
+                let newStartX = 1 - box.end.z;
+                let newStartZ = box.start.x;
+                let newEndX = 1 - box.start.z;
+                let newEndZ = box.end.x;
+
+                if (direction === 'west') {
+                    [newStartX, newEndX] = [- newEndX + 1, 1 - newStartX];
+                }
+                [box.start.x, box.start.z, box.end.x, box.end.z] = [newStartX, newStartZ, newEndX, newEndZ];
             }
             return box;
         },

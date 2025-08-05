@@ -15,6 +15,8 @@ const defaultProps = {
     'isJumping': false,
     'isOnGround': false,
     'isSneaking': false,
+    'isGrinding': false,
+    'isJumpTick': false,
     'input': '',
     'walktime': 0,
     'jumpTickInput': ''
