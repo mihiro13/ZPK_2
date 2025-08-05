@@ -77,6 +77,7 @@ function initializeDisplay(labels, decorateOptions, angleLine, player) {
     display.speedVector = formatVector('Speed Vector', labels.speedVector);
     display.tier = formatValue('Tier', labels.tier);
     display.airtime = formatValue('Airtime', labels.airtime);
+    display.grind = formatValue('Grind', labels.grind);
     display.mm = formatMM('MM', labels.mm);
     display.offset = formatOffset('Offset', labels.offset);
     display.pb = formatOffset('PB', labels.pb);
@@ -103,6 +104,7 @@ const defaultConfig = {
     'speedVector': false,
     'tier': false,
     'airtime': false,
+    'grind': false,
     'mm': false,
     'offset': true,
     'pb': true,

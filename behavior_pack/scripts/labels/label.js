@@ -17,6 +17,7 @@ const defaultValue = {
     'speedVector': { speed: 0, facing: 0 },
     'tier': 0,
     'airtime': 0,
+    'grind': 0,
     'mm': { x: -1, z: -1 },
     'offset': { total: -1, x: -1, z: -1 },
     'pb': { total: -1, x: -1, z: -1 },
@@ -53,8 +54,8 @@ export function updateLables(player) {
     const tbf = getProperties(player, 'tbf');
     const ttbf = getProperties(player, 'ttbf');
     const lb = getProperties(player, 'lb');
-    const isJumpTick = ttbf.isOnGround === true && current.isJumping === true && current.isOnGround === false;
-    const hasJumped = tbf.isOnGround === true && current.isJumping === true && current.isOnGround === false;
+    const hasJumped = tbf.isJumpTick//ttbf.isOnGround === true && current.vel.y >= 0.0 && tbf.isOnGround === false;
+    const isJumpTick = current.isJumpTick;
     const currentLabels = getProperties(player, 'label');
     const updatedLabels = {};
 
@@ -62,20 +63,30 @@ export function updateLables(player) {
     updatedLabels.loc = current.loc;
 
     // Pitch
-    updatedLabels.pitch = current.pitch
+    updatedLabels.pitch = current.pitch;
 
     // Yaw
     updatedLabels.yaw = current.yaw;
 
     // Jump Angle, Jump, Preturn
-    if (isJumpTick) {
+    if (hasJumped) {
         updatedLabels.ja = current.yaw;
-        updatedLabels.jump = current.loc;
+        updatedLabels.jump = tbf.loc;
         updatedLabels.preturn = tbf.yaw - ttbf.yaw;
+        if (current.vel.y == 0.0) {
+            if (!current.isGrinding) {
+                updatedLabels.grind = 1;
+                setProperties(player, 'current', { 'isGrinding': true });
+            } else {
+                updatedLabels.grind = currentLabels.grind + 1;
+            }
+        } else {
+            if (!current.isGrinding) updatedLabels.grind = 0;
+        }
     };
 
     // Second Turn
-    if (currentLabels.airtime === 2) {
+    if (ttbf.isJumpTick) {
         updatedLabels.secondTurn = current.yaw - tbf.yaw;
     };
 
@@ -128,7 +139,7 @@ export function updateLables(player) {
     updatedLabels.lastInput = current.input;
 
     // Last Sidestep
-    if (hasJumped) {
+    if (isJumpTick) {
         if (current.jumpTickInput.includes('A') || current.jumpTickInput.includes('D')) {
             updatedLabels.lastSidestep = 'WDWA';
         } else updatedLabels.lastSidestep = 'None';
@@ -137,7 +148,7 @@ export function updateLables(player) {
     };
 
     // Last Timing
-    if (hasJumped) {
+    if (isJumpTick) {
         if (tbf.walktime >= 1) {
             updatedLabels.lastTiming = `HH ${tbf.walktime}t`;
         } else if (current.jumpTickInput.includes('S')) {

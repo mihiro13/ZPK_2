@@ -32,10 +32,13 @@ world.afterEvents.worldLoad.subscribe(() => {
                 walktime = current.walktime + 1;
             };
             let { isWalkJump, jumpTickInput } = current;
-            if (current.isOnGround === true && isJumping === true && isOnGround === false) {
+            const isJumpTick = current.isOnGround === true && vel.y >= 0.0 && isOnGround === false;
+            if (isJumpTick) {
                 jumpTickInput = input;
                 isWalkJump = !isSprinting;
             };
+            let isGrinding = current.isGrinding;
+            if (input === '' && !isJumping) isGrinding = false;
             const props = {
                 'loc': loc,
                 'yaw': rot.y,
@@ -46,6 +49,8 @@ world.afterEvents.worldLoad.subscribe(() => {
                 'isOnGround': isOnGround,
                 'isWalkJump': isWalkJump,
                 'isSneaking': isSneaking,
+                'isGrinding': isGrinding,
+                'isJumpTick': isJumpTick,
                 'input': input,
                 'walktime': walktime,
                 'jumpTickInput': jumpTickInput
