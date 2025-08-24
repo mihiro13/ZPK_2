@@ -35,7 +35,7 @@ world.afterEvents.itemUse.subscribe((ev) => {
         const vec3Rot = player.getDynamicProperty('cp_rotation');
         const rotation = { x: vec3Rot.x, y: vec3Rot.y } ?? { x: 0, y: 0 };
         player.teleport(location, { rotation: rotation });
-    } else if (itemStack.typeId === checkpoint_set) {
+    } else if (itemStack.typeId === checkpoint_set && player.isOnGround) {
         const rotation = player.getRotation();
         const location = player.location;
         setCP(player, location, rotation);
