@@ -23,7 +23,8 @@ const defaultValue = {
     'pb': { total: -1, x: -1, z: -1 },
     'lastInput': '',
     'lastSidestep': 'None',
-    'lastTiming': ''
+    'lastTiming': '',
+    'time': ''
 };
 
 world.afterEvents.worldLoad.subscribe(() => {
@@ -58,6 +59,9 @@ export function updateLables(player) {
     const isJumpTick = current.isJumpTick;
     const currentLabels = getProperties(player, 'label');
     const updatedLabels = {};
+
+    // Time
+    updatedLables.time = Date.now();
 
     // Position
     updatedLabels.loc = current.loc;
