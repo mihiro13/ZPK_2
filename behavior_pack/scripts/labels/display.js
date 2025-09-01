@@ -84,6 +84,7 @@ function initializeDisplay(labels, decorateOptions, angleLine, player) {
     display.lastInput = formatValue('Last Input', labels.lastInput);
     display.lastSidestep = formatValue('Last Sidestep', labels.lastSidestep);
     display.lastTiming = formatValue('Last Timing', labels.lastTiming);
+    display.time = formatValue('Time', labels.time);
 
     return display;
 };
@@ -110,7 +111,8 @@ const defaultConfig = {
     'pb': true,
     'lastInput': false,
     'lastSidestep': false,
-    'lastTiming': false
+    'lastTiming': false,
+    'time': false
 };
 
 function _safeParse(str, obj) {

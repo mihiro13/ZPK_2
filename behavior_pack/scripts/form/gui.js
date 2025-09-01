@@ -24,7 +24,8 @@ const labelName = {
     'pb': 'PB',
     'lastInput': 'Last Input',
     'lastSidestep': 'Last Sidestep',
-    'lastTiming': 'Last Timing'
+    'lastTiming': 'Last Timing',
+    'time': 'Time'
 };
 
 const defaultConfig = {
@@ -49,7 +50,8 @@ const defaultConfig = {
     'pb': true,
     'lastInput': false,
     'lastSidestep': false,
-    'lastTiming': false
+    'lastTiming': false,
+    'time': false
 };
 
 /**
