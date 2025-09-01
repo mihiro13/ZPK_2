@@ -1,5 +1,6 @@
 import { world } from '@minecraft/server';
 import { getProperties, setProperties } from '../util/property';
+import { formatDateTime } from '../util/timeHelper';
 
 const defaultValue = {
     'loc': { x: 0, y: -100, z: 0 },
@@ -50,7 +51,7 @@ function initProps(player) {
     });
 }
 
-export function updateLables(player) {
+export function updateLabels(player) {
     const current = getProperties(player, 'current');
     const tbf = getProperties(player, 'tbf');
     const ttbf = getProperties(player, 'ttbf');
@@ -61,7 +62,7 @@ export function updateLables(player) {
     const updatedLabels = {};
 
     // Time
-    updatedLables.time = Date.now();
+    updatedLabels.time = formatDateTime(new Date());
 
     // Position
     updatedLabels.loc = current.loc;
