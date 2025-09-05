@@ -1,40 +1,35 @@
 import { getProperties } from '../util/property';
 
 const labelCharacters = {
-    'x': 38,
-    'y': 38,
-    'z': 38,
-    'pitch': 42,
-    'facing': 38,
-    'ja': 47,
-    'ha': 46,
-    'secondTurn': 48,
-    'preturn': 42,
-    'lastTurning': 49,
-    'landx': 51,
-    'landy': 51,
-    'landz': 51,
-    'hitx': 42,
-    'hity': 42,
-    'hitz': 42,
-    'jumpx': 43,
-    'jumpy': 43,
-    'jumpz': 43,
-    'speedx': 44,
-    'speedy': 44,
-    'speedz': 44,
-    'speedVector': 86,
-    'tier': 28,
-    'airtime': 28,
-    'grind': 28,
-    'mmx': 49,
-    'mmz': 49,
-    'offset': 44,
-    'offsetx': 46,
-    'offsetz': 46,
-    'pb': 41,
-    'pbx': 41,
-    'pbz': 41,
+    'x': 30,
+    'y': 30,
+    'z': 30,
+    'pitch': 34,
+    'facing': 30,
+    'ja': 39,
+    'ha': 38,
+    'secondTurn': 40,
+    'preturn': 34,
+    'lastTurning': 41,
+    'landx': 43,
+    'landz': 43,
+    'hitx': 34,
+    'hitz': 34,
+    'jumpx': 35,
+    'jumpz': 35,
+    'speedx': 36,
+    'speedz': 36,
+    'speedVector': 70,
+    'tier': 20,
+    'grind': 20,
+    'mmx': 41,
+    'mmz': 41,
+    'offset': 36,
+    'offsetx': 38,
+    'offsetz': 38,
+    'pb': 33,
+    'pbx': 33,
+    'pbz': 33,
     'lastInput': 26,
     'lastSidestep': 45,
     'lastTiming': 45,
@@ -114,20 +109,15 @@ function initializeDisplay(labels, decorateOptions, angleLine, player) {
     display.preturn = formatNumberLabel('Preturn', labels.preturn, labelCharacters.preturn);
     display.lastTurning = formatNumberLabel('Last Turning', labels.lastTurning, labelCharacters.lastTurning);
     display.landx = formatNumberLabel('Last Landing X', labels.land.x, labelCharacters.landx);
-    display.landy = formatNumberLabel('Last Landing Y', labels.land.y, labelCharacters.landy);
     display.landz = formatNumberLabel('Last Landing Z', labels.land.z, labelCharacters.landz);
     display.hitx = formatNumberLabel('Hit X', labels.hit.x, labelCharacters.hitx);
-    display.hity = formatNumberLabel('Hit Y', labels.hit.y, labelCharacters.hity);
     display.hitz = formatNumberLabel('Hit Z', labels.hit.z, labelCharacters.hitz);
     display.jumpx = formatNumberLabel('Jump X', labels.jump.x, labelCharacters.jumpx);
-    display.jumpy = formatNumberLabel('Jump Y', labels.jump.y, labelCharacters.jumpy);
     display.jumpz = formatNumberLabel('Jump Z', labels.jump.z, labelCharacters.jumpz);
     display.speedx = formatNumberLabel('X Speed', labels.speed.x, labelCharacters.speedx);
-    display.speedy = formatNumberLabel('Y Speed', labels.speed.y, labelCharacters.speedy);
     display.speedz = formatNumberLabel('Z Speed', labels.speed.z, labelCharacters.speedz);
     display.speedVector = formatVectorLabel(labels.speedVector.speed, labels.speedVector.facing, labelCharacters.speedVector);
     display.tier = formatNumberLabel('Tier', labels.tier, labelCharacters.tier);
-    display.airtime = formatNumberLabel('Airtime', labels.airtime, labelCharacters.airtime);
     display.grind = formatNumberLabel('Grind', labels.grind, labelCharacters.grind);
     display.mmx = formatNumberLabel('MM X Offset', labels.mm.x, labelCharacters.mmx);
     display.mmz = formatNumberLabel('MM Z Offset', labels.mm.z, labelCharacters.mmz);
@@ -177,20 +167,15 @@ const defaultConfig = {
     'preturn': false,
     'lastTurning': true,
     'landx': true,
-    'landy': true,
     'landz': true,
     'hitx': false,
-    'hity': false,
     'hitz': false,
     'jumpx': false,
-    'jumpy': false,
     'jumpz': false,
     'speedx': false,
-    'speedy': false,
     'speedz': false,
     'speedVector': false,
     'tier': false,
-    'airtime': false,
     'grind': false,
     'mmx': false,
     'mmz': false,
