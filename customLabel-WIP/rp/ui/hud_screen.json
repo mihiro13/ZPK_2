@@ -1,0 +1,709 @@
+{
+    "hud_actionbar_text": {
+        "$base_text": "$actionbar_text",
+        "visible": false
+    },
+    "label": {
+        "$base_text": "$actionbar_text",
+        "$text": "$base_text",
+        "type": "image",
+        "size": [
+            "100%c + 12px",
+            "100%c + 5px"
+        ],
+        "offset": [
+            -6,
+            0
+        ],
+        "texture": "textures/ui/hud_tip_text_background",
+        "alpha": "@hud.anim_actionbar_text_background_alpha_out",
+        "anchor_from": "top_left",
+        "anchor_to": "top_left",
+        "controls": [
+            {
+                "actionbar_message": {
+                    "type": "label",
+                    "shadow": true,
+                    "anchor_from": "top_left",
+                    "anchor_to": "top_left",
+                    "color": "$tool_tip_text",
+                    "layer": 31,
+                    "text": "$text",
+                    "localize": false,
+                    "text_alignment": "center",
+                    "alpha": "@hud.anim_actionbar_text_alpha_out"
+                }
+            }
+        ],
+        "visible": "(not ($text = ''))"
+    },
+
+    "label_x@hud.label": {
+        "$text": "('%.38s' * $base_text)",
+        "type": "image",
+        "offset": "$x_offset"
+    },
+    "label_y@hud.label": {
+        "$text": "(('%.76s' * $base_text) - ('%.38s' * $base_text))",
+        "type": "image",
+        "offset": "$y_offset"
+    },
+    "label_z@hud.label": {
+        "$text": "(('%.114s' * $base_text) - ('%.76s' * $base_text))",
+        "type": "image",
+        "offset": "$z_offset"
+    },
+    "label_pitch@hud.label": {
+        "$text": "(('%.155s' * $base_text) - ('%.114s' * $base_text))",
+        "type": "image",
+        "offset": "$pitch_offset"
+    },
+    "label_facing@hud.label": {
+        "$text": "(('%.192s' * $base_text) - ('%.155s' * $base_text))",
+        "type": "image",
+        "offset": "$facing_offset"
+    },
+    "label_ja@hud.label": {
+        "$text": "(('%.239s' * $base_text) - ('%.192s' * $base_text))",
+        "type": "image",
+        "offset": "$ja_offset"
+    },
+    "label_ha@hud.label": {
+        "$text": "(('%.285s' * $base_text) - ('%.239s' * $base_text))",
+        "type": "image",
+        "offset": "$ha_offset"
+    },
+    "label_secondTurn@hud.label": {
+        "$text": "(('%.333s' * $base_text) - ('%.285s' * $base_text))",
+        "type": "image",
+        "offset": "$secondTurn_offset"
+    },
+    "label_preturn@hud.label": {
+        "$text": "(('%.377s' * $base_text) - ('%.333s' * $base_text))",
+        "type": "image",
+        "offset": "$preturn_offset"
+    },
+    "label_lastTurning@hud.label": {
+        "$text": "(('%.426s' * $base_text) - ('%.377s' * $base_text))",
+        "type": "image",
+        "offset": "$lastTurning_offset"
+    },
+    "label_landx@hud.label": {
+        "$text": "(('%.477s' * $base_text) - ('%.426s' * $base_text))",
+        "type": "image",
+        "offset": "$landx_offset"
+    },
+    "label_landy@hud.label": {
+        "$text": "(('%.528s' * $base_text) - ('%.477s' * $base_text))",
+        "type": "image",
+        "offset": "$landy_offset"
+    },
+    "label_landz@hud.label": {
+        "$text": "(('%.579s' * $base_text) - ('%.528s' * $base_text))",
+        "type": "image",
+        "offset": "$landz_offset"
+    },
+    "label_hitx@hud.label": {
+        "$text": "(('%.621s' * $base_text) - ('%.579s' * $base_text))",
+        "type": "image",
+        "offset": "$hitx_offset"
+    },
+    "label_hity@hud.label": {
+        "$text": "(('%.663s' * $base_text) - ('%.621s' * $base_text))",
+        "type": "image",
+        "offset": "$hity_offset"
+    },
+    "label_hitz@hud.label": {
+        "$text": "(('%.705s' * $base_text) - ('%.663s' * $base_text))",
+        "type": "image",
+        "offset": "$hitz_offset"
+    },
+    "label_jumpx@hud.label": {
+        "$text": "(('%.748s' * $base_text) - ('%.705s' * $base_text))",
+        "type": "image",
+        "offset": "$jumpx_offset"
+    },
+    "label_jumpy@hud.label": {
+        "$text": "(('%.791s' * $base_text) - ('%.748s' * $base_text))",
+        "type": "image",
+        "offset": "$jumpy_offset"
+    },
+    "label_jumpz@hud.label": {
+        "$text": "(('%.834s' * $base_text) - ('%.791s' * $base_text))",
+        "type": "image",
+        "offset": "$jumpz_offset"
+    },
+    "label_speedx@hud.label": {
+        "$text": "(('%.878s' * $base_text) - ('%.834s' * $base_text))",
+        "type": "image",
+        "offset": "$speedx_offset"
+    },
+    "label_speedy@hud.label": {
+        "$text": "(('%.922s' * $base_text) - ('%.878s' * $base_text))",
+        "type": "image",
+        "offset": "$speedy_offset"
+    },
+    "label_speedz@hud.label": {
+        "$text": "(('%.966s' * $base_text) - ('%.922s' * $base_text))",
+        "type": "image",
+        "offset": "$speedz_offset"
+    },
+    "label_speedVector@hud.label": {
+        "$text": "(('%.1052s' * $base_text) - ('%.966s' * $base_text))",
+        "type": "image",
+        "offset": "$speedVector_offset"
+    },
+    "label_tier@hud.label": {
+        "$text": "(('%.1080s' * $base_text) - ('%.1052s' * $base_text))",
+        "type": "image",
+        "offset": "$tier_offset"
+    },
+    "label_airtime@hud.label": {
+        "$text": "(('%.1108s' * $base_text) - ('%.1080s' * $base_text))",
+        "type": "image",
+        "offset": "$airtime_offset"
+    },
+    "label_grind@hud.label": {
+        "$text": "(('%.1136s' * $base_text) - ('%.1108s' * $base_text))",
+        "type": "image",
+        "offset": "$grind_offset"
+    },
+    "label_mmx@hud.label": {
+        "$text": "(('%.1185s' * $base_text) - ('%.1136s' * $base_text))",
+        "type": "image",
+        "offset": "$mmx_offset"
+    },
+    "label_mmz@hud.label": {
+        "$text": "(('%.1234s' * $base_text) - ('%.1185s' * $base_text))",
+        "type": "image",
+        "offset": "$mmz_offset"
+    },
+    "label_offset@hud.label": {
+        "$text": "(('%.1278s' * $base_text) - ('%.1234s' * $base_text))",
+        "type": "image",
+        "offset": "$offset_offset"
+    },
+    "label_offsetx@hud.label": {
+        "$text": "(('%.1324s' * $base_text) - ('%.1278s' * $base_text))",
+        "type": "image",
+        "offset": "$offsetx_offset"
+    },
+    "label_offsetz@hud.label": {
+        "$text": "(('%.1370s' * $base_text) - ('%.1324s' * $base_text))",
+        "type": "image",
+        "offset": "$offsetz_offset"
+    },
+    "label_pb@hud.label": {
+        "$text": "(('%.1411s' * $base_text) - ('%.1370s' * $base_text))",
+        "type": "image",
+        "offset": "$pb_offset"
+    },
+    "label_pbx@hud.label": {
+        "$text": "(('%.1452s' * $base_text) - ('%.1411s' * $base_text))",
+        "type": "image",
+        "offset": "$pbx_offset"
+    },
+    "label_pbz@hud.label": {
+        "$text": "(('%.1493s' * $base_text) - ('%.1452s' * $base_text))",
+        "type": "image",
+        "offset": "$pbz_offset"
+    },
+    "label_lastInput@hud.label": {
+        "$text": "(('%.1519s' * $base_text) - ('%.1493s' * $base_text))",
+        "type": "image",
+        "offset": "$lastInput_offset"
+    },
+    "label_lastSidestep@hud.label": {
+        "$text": "(('%.1564s' * $base_text) - ('%.1519s' * $base_text))",
+        "type": "image",
+        "offset": "$lastSidestep_offset"
+    },
+    "label_lastTiming@hud.label": {
+        "$text": "(('%.1609s' * $base_text) - ('%.1564s' * $base_text))",
+        "type": "image",
+        "offset": "$lastTiming_offset"
+    },
+    "label_time@hud.label": {
+        "$text": "(('%.1635s' * $base_text) - ('%.1609s' * $base_text))",
+        "type": "image",
+        "offset": "$time_offset"
+    },
+
+
+    "label_x_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_x@hud.label_x"
+            }
+        }
+    },
+    "label_y_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_y@hud.label_y"
+            }
+        }
+    },
+    "label_z_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_z@hud.label_z"
+            }
+        }
+    },
+    "label_pitch_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_pitch@hud.label_pitch"
+            }
+        }
+    },
+    "label_facing_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_facing@hud.label_facing"
+            }
+        }
+    },
+    "label_ja_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_ja@hud.label_ja"
+            }
+        }
+    },
+    "label_ha_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_ha@hud.label_ha"
+            }
+        }
+    },
+    "label_secondTurn_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_secondTurn@hud.label_secondTurn"
+            }
+        }
+    },
+    "label_preturn_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_preturn@hud.label_preturn"
+            }
+        }
+    },
+    "label_lastTurning_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_lastTurning@hud.label_lastTurning"
+            }
+        }
+    },
+    "label_landx_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_landx@hud.label_landx"
+            }
+        }
+    },
+    "label_landy_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_landy@hud.label_landy"
+            }
+        }
+    },
+    "label_landz_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_landz@hud.label_landz"
+            }
+        }
+    },
+    "label_hitx_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_hitx@hud.label_hitx"
+            }
+        }
+    },
+    "label_hity_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_hity@hud.label_hity"
+            }
+        }
+    },
+    "label_hitz_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_hitz@hud.label_hitz"
+            }
+        }
+    },
+    "label_jumpx_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_jumpx@hud.label_jumpx"
+            }
+        }
+    },
+    "label_jumpy_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_jumpy@hud.label_jumpy"
+            }
+        }
+    },
+    "label_jumpz_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_jumpz@hud.label_jumpz"
+            }
+        }
+    },
+    "label_speedx_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_speedx@hud.label_speedx"
+            }
+        }
+    },
+    "label_speedy_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_speedy@hud.label_speedy"
+            }
+        }
+    },
+    "label_speedz_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_speedz@hud.label_speedz"
+            }
+        }
+    },
+    "label_speedVector_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_speedVector@hud.label_speedVector"
+            }
+        }
+    },
+    "label_tier_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_tier@hud.label_tier"
+            }
+        }
+    },
+    "label_airtime_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_airtime@hud.label_airtime"
+            }
+        }
+    },
+    "label_grind_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_grind@hud.label_grind"
+            }
+        }
+    },
+    "label_mmx_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_mmx@hud.label_mmx"
+            }
+        }
+    },
+    "label_mmz_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_mmz@hud.label_mmz"
+            }
+        }
+    },
+    "label_offset_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_offset@hud.label_offset"
+            }
+        }
+    },
+    "label_offsetx_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_offsetx@hud.label_offsetx"
+            }
+        }
+    },
+    "label_offsetz_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_offsetz@hud.label_offsetz"
+            }
+        }
+    },
+    "label_pb_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_pb@hud.label_pb"
+            }
+        }
+    },
+    "label_pbx_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_pbx@hud.label_pbx"
+            }
+        }
+    },
+    "label_pbz_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_pbz@hud.label_pbz"
+            }
+        }
+    },
+    "label_lastInput_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_lastInput@hud.label_lastInput"
+            }
+        }
+    },
+    "label_lastSidestep_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_lastSidestep@hud.label_lastSidestep"
+            }
+        }
+    },
+    "label_lastTiming_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_lastTiming@hud.label_lastTiming"
+            }
+        }
+    },
+    "label_time_factory": {
+        "type": "panel",
+        "factory": {
+            "name": "hud_actionbar_text_factory",
+            "control_ids": {
+                "hud_actionbar_text": "label_time@hud.label_time"
+            }
+        }
+    },
+
+
+    "zpk_panel": {
+        "type": "panel",
+        "controls": [
+            {
+                "label_x_panel@hud.label_x_factory": {}
+            },
+            {
+                "label_y_panel@hud.label_y_factory": {}
+            },
+            {
+                "label_z_panel@hud.label_z_factory": {}
+            },
+            {
+                "label_pitch_panel@hud.label_pitch_factory": {}
+            },
+            {
+                "label_facing_panel@hud.label_facing_factory": {}
+            },
+            {
+                "label_ja_panel@hud.label_ja_factory": {}
+            },
+            {
+                "label_ha_panel@hud.label_ha_factory": {}
+            },
+            {
+                "label_secondTurn_panel@hud.label_secondTurn_factory": {}
+            },
+            {
+                "label_preturn_panel@hud.label_preturn_factory": {}
+            },
+            {
+                "label_lastTurning_panel@hud.label_lastTurning_factory": {}
+            },
+            {
+                "label_landx_panel@hud.label_landx_factory": {}
+            },
+            {
+                "label_landy_panel@hud.label_landy_factory": {}
+            },
+            {
+                "label_landz_panel@hud.label_landz_factory": {}
+            },
+            {
+                "label_hitx_panel@hud.label_hitx_factory": {}
+            },
+            {
+                "label_hity_panel@hud.label_hity_factory": {}
+            },
+            {
+                "label_hitz_panel@hud.label_hitz_factory": {}
+            },
+            {
+                "label_jumpx_panel@hud.label_jumpx_factory": {}
+            },
+            {
+                "label_jumpy_panel@hud.label_jumpy_factory": {}
+            },
+            {
+                "label_jumpz_panel@hud.label_jumpz_factory": {}
+            },
+            {
+                "label_speedx_panel@hud.label_speedx_factory": {}
+            },
+            {
+                "label_speedy_panel@hud.label_speedy_factory": {}
+            },
+            {
+                "label_speedz_panel@hud.label_speedz_factory": {}
+            },
+            {
+                "label_speedVector_panel@hud.label_speedVector_factory": {}
+            },
+            {
+                "label_tier_panel@hud.label_tier_factory": {}
+            },
+            {
+                "label_airtime_panel@hud.label_airtime_factory": {}
+            },
+            {
+                "label_grind_panel@hud.label_grind_factory": {}
+            },
+            {
+                "label_mmx_panel@hud.label_mmx_factory": {}
+            },
+            {
+                "label_mmz_panel@hud.label_mmz_factory": {}
+            },
+            {
+                "label_offset_panel@hud.label_offset_factory": {}
+            },
+            {
+                "label_offsetx_panel@hud.label_offsetx_factory": {}
+            },
+            {
+                "label_offsetz_panel@hud.label_offsetz_factory": {}
+            },
+            {
+                "label_pb_panel@hud.label_pb_factory": {}
+            },
+            {
+                "label_pbx_panel@hud.label_pbx_factory": {}
+            },
+            {
+                "label_pbz_panel@hud.label_pbz_factory": {}
+            },
+            {
+                "label_lastInput_panel@hud.label_lastInput_factory": {}
+            },
+            {
+                "label_lastSidestep_panel@hud.label_lastSidestep_factory": {}
+            },
+            {
+                "label_lastTiming_panel@hud.label_lastTiming_factory": {}
+            },
+            {
+                "label_time_panel@hud.label_time_factory": {}
+            }
+        ]
+    },
+    "root_panel": {
+        "modifications": [
+            {
+                "array_name": "controls",
+                "operation": "insert_front",
+                "value": [
+                    {
+                        "zpk_panel@hud.zpk_panel": {}
+                    }
+                ]
+            }
+        ]
+    }
+}
