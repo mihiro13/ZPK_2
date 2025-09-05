@@ -53,7 +53,7 @@ export function displayLabels(player) {
             return ' '.repeat(labelCharacters[key]);
         }
     }).join('');
-    //player.onScreenDisplay.setActionBar(result);
+    player.onScreenDisplay.setActionBar(result);
     return;
 }
 
@@ -80,7 +80,6 @@ function initializeDisplay(labels, decorateOptions, angleLine, player) {
         const originalText = `§r§${color1}${labelName}${separate}§${color2}${parseFloat(value.toFixed(digit))}`;
         const addSpaceCount = characters - getTextLength(originalText);
         const result = addSpaceCount >= 0 ? originalText + ' '.repeat(addSpaceCount) : originalText.slice(0, addSpaceCount);
-        //console.warn(labelName, getTextLength(result), getTextLength(originalText))
         return result;
     }
 

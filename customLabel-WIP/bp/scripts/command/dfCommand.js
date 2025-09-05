@@ -14,7 +14,7 @@ export function dfCommandHandle(origin, arg) {
     if (!origin.sourceEntity || origin.sourceEntity.typeId !== 'minecraft:player') return undefined;
     /** @type { Player } */
     const player = origin.sourceEntity;
-    if (0 <= arg && arg <= 16) {
+    if (0 <= arg && arg <= 8) {
         player.setDynamicProperty('digit', Math.floor(arg));
         sendMessage(player, 'Set DF to ' + Math.floor(arg));
         return undefined;
