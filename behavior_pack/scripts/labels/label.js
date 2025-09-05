@@ -3,7 +3,7 @@ import { getProperties, setProperties } from '../util/property';
 import { formatDateTime } from '../util/timeHelper';
 
 const defaultValue = {
-    'loc': { x: 0, y: -100, z: 0 },
+    'loc': { x: 0, y: 0, z: 0 },
     'pitch': 0,
     'yaw': 0,
     'ja': 0,
@@ -11,7 +11,7 @@ const defaultValue = {
     'secondTurn': 0,
     'preturn': 0,
     'lastTurning': 0,
-    'lastLanding': { x: 0, y: 0, z: 0 },
+    'landx': { x: 0, y: 0, z: 0 },
     'hit': { x: 0, y: 0, z: 0 },
     'jump': { x: 0, y: 0, z: 0 },
     'speed': { x: 0, y: 0, z: 0 },
@@ -101,7 +101,7 @@ export function updateLabels(player) {
 
     // Last Landing, Hit and Hit Angle
     if (current.isOnGround === true && tbf.isOnGround === false) {
-        updatedLabels.lastLanding = tbf.loc;
+        updatedLabels.land = tbf.loc;
         updatedLabels.hit = current.loc;
         updatedLabels.ha = current.yaw;
     };
@@ -149,21 +149,21 @@ export function updateLabels(player) {
             updatedLabels.lastSidestep = 'WDWA';
         } else updatedLabels.lastSidestep = 'None';
     } else if (tbf.isOnGround === false) {
-        if (currentLabels.lastSidestep === 'None' && (current.input.includes('A') || current.input.includes('D'))) updatedLabels.lastSidestep = `WAD ${currentLabels.airtime}t`;
+        if (currentLabels.lastSidestep === 'None' && (current.input.includes('A') || current.input.includes('D'))) updatedLabels.lastSidestep = `WAD ${currentLabels.airtime} ticks`;
     };
 
     // Last Timing
     if (isJumpTick) {
         if (tbf.walktime >= 1) {
-            updatedLabels.lastTiming = `HH ${tbf.walktime}t`;
+            updatedLabels.lastTiming = `HH ${tbf.walktime} ticks`;
         } else if (current.jumpTickInput.includes('S')) {
             updatedLabels.lastTiming = 'BWJam';
         } else if (current.jumpTickInput.includes('W') && current.isWalkJump === false && tbf.input === '') updatedLabels.lastTiming = 'Jam';
     } else {
         if (current.jumpTickInput === '' && tbf.input === '' && current.input !== '' && currentLabels.airtime > 0) {
-            updatedLabels.lastTiming = currentLabels.airtime === 1 ? 'Max Pessi' : `Pessi -${currentLabels.airtime}t`;
+            updatedLabels.lastTiming = currentLabels.airtime === 1 ? 'Max Pessi' : `Pessi -${currentLabels.airtime} ticks`;
         } else if (current.jumpTickInput !== '' && tbf.isSprinting === false && current.isWalkJump === true && current.isSprinting) {
-            if (tbf.isOnGround === false) updatedLabels.lastTiming = currentLabels.airtime === 1 ? 'Max FMM' : `FMM ${currentLabels.airtime}t`;
+            if (tbf.isOnGround === false) updatedLabels.lastTiming = currentLabels.airtime === 1 ? 'Max FMM' : `FMM ${currentLabels.airtime} ticks`;
         }
     };
 
