@@ -1,10 +1,10 @@
-export function formatDateTime(date) {
-    const jstOffset = 9 * 60 * 60 * 1000;
-    const jstDate = new Date(date.getTime() + jstOffset);
+export function formatDateTime(date, timezone) {
+    const offset = timezone * 60 * 60 * 1000;
+    const factDate = new Date(date.getTime() + offset);
 
-    const hours = String(jstDate.getUTCHours()).padStart(2, '0');
-    const minutes = String(jstDate.getUTCMinutes()).padStart(2, '0');
-    const seconds = String(jstDate.getUTCSeconds()).padStart(2, '0');
+    const hours = String(factDate.getUTCHours()).padStart(2, '0');
+    const minutes = String(factDate.getUTCMinutes()).padStart(2, '0');
+    const seconds = String(factDate.getUTCSeconds()).padStart(2, '0');
 
     return `${hours}:${minutes}:${seconds}`;
 }
