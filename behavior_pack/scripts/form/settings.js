@@ -14,6 +14,7 @@ export function settingForm(player) {
     const sendoffset_z = player.getDynamicProperty('sendoffset_z') ?? true;
     const offset_limit = player.getDynamicProperty('offset_limit') ?? 0.7;
     const prefix = player.getDynamicProperty('prefix') ?? '<MPK>';
+    const timezone = player.getDynamicProperty('timezone') ?? 0;
     const checkpointRetuner = player.getDynamicProperty('cpReturnItem') ?? 'minecraft:red_dye';
     const checkpointSet = player.getDynamicProperty('cpSetItem') ?? 'minecraft:emerald';
     const gamemodeChanger = player.getDynamicProperty('gmChangerItem') ?? 'minecraft:iron_nugget';
@@ -26,7 +27,8 @@ export function settingForm(player) {
         .toggle('Send Offset z in chat', { defaultValue: sendoffset_z })
         .toggle('Send Total PB in chat', { defaultValue: sendpb })
         .toggle('Send PB x in chat', { defaultValue: sendpb_x })
-        .toggle('Send PB z in chat', { defaultValue: sendpb_z });
+        .toggle('Send PB z in chat', { defaultValue: sendpb_z })
+        .textField('Timezone (GMT+/-)', '+9 | -3.5', { defaultValue: timezone });
     if (player.playerPermissionLevel === PlayerPermissionLevel.Operator) {
         form.textField('Checkpoint Returner', 'minecraft:red_dye', { defaultValue: checkpointRetuner })
             .textField('Checkpoint Set', 'minecraft:emerald', { defaultValue: checkpointSet })
@@ -45,7 +47,8 @@ export function settingForm(player) {
             'sendoffset_z': res.formValues[4],
             'sendpb': res.formValues[5],
             'sendpb_x': res.formValues[6],
-            'sendpb_z': res.formValues[7]
+            'sendpb_z': res.formValues[7],
+            'timezone': Number.isFinite(Number(res.formValues[8])) ? res.formValues[8] : timezone
         });
 
         if (player.playerPermissionLevel === PlayerPermissionLevel.Operator) {
