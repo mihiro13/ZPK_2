@@ -19,11 +19,11 @@
     "dependencies": [
         {
             "module_name": "@minecraft/server",
-            "version": "2.2.0-beta"
+            "version": "beta"
         },
         {
             "module_name": "@minecraft/server-ui",
-            "version": "2.1.0-beta"
+            "version": "beta"
         },
         {
             "uuid": "643aebe5-2a69-41ad-a6f5-ece94e4dd35f",
