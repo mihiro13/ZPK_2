@@ -29,37 +29,37 @@ export function setlbForm(player, newLB = true) {
                         player.setDynamicProperties({
                             'inv_x': true,
                             'inv_z': true
-                        });
+                        })
                         break;
                     case 'x':
                         player.setDynamicProperties({
                             'inv_x': true,
                             'inv_z': false
-                        });
+                        })
                         break;
                     case 'z':
                         player.setDynamicProperties({
                             'inv_x': false,
                             'inv_z': true
-                        });
+                        })
                         break;
                     default:
                         player.setDynamicProperties({
                             'inv_x': false,
                             'inv_z': false
-                        });
+                        })
                         break;
                 }
 
                 if (newLB === true) {
                     player.setDynamicProperty('lb', coord);
                     sendMessage(player, 'Set landing block successfully!');
-                };
+                }
 
                 player.setDynamicProperties({
                     'lb_type': lb_type,
                     'inverseLB': inverseLB
-                });
+                })
                 setProperties(player, 'lb', {
                     'offset': -1,
                     'offset_x': -1,
@@ -67,7 +67,7 @@ export function setlbForm(player, newLB = true) {
                     'pb': -1,
                     'pb_x': -1,
                     'pb_z': -1
-                });
+                })
             }
-        });
-};
+        })
+}

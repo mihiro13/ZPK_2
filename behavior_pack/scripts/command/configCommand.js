@@ -13,4 +13,4 @@ export function configCommandHandle(origin) {
     const player = origin.sourceEntity;
     system.run(() => settingForm(player));
     return undefined;
-};
+}

@@ -16,7 +16,7 @@ export function clearLbCommandHandle(origin) {
         lb: { x: 0, y: 500, z: 0 },
         boxStart: { x: 0, y: 500, z: 0 },
         boxEnd: { x: 0, y: 500, z: 0 }
-    });
+    })
     setProperties(player, 'lb', {
         'offset': -1,
         'offset_x': -1,
@@ -24,7 +24,7 @@ export function clearLbCommandHandle(origin) {
         'pb': -1,
         'pb_x': -1,
         'pb_z': -1
-    });
+    })
     sendMessage(player, 'Successfully clear landing block and pb.');
     return undefined;
-};
+}

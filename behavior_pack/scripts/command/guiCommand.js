@@ -13,4 +13,4 @@ export function guiCommandHandle(origin) {
     const player = origin.sourceEntity;
     system.run(() => guiForm(player));
     return undefined;
-};
+}

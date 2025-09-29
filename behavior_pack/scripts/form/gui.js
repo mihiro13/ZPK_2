@@ -3,40 +3,25 @@ import { ModalFormData } from '@minecraft/server-ui';
 import { settingForm } from './settings';
 
 const labelName = {
-    'x': 'X',
-    'y': 'Y',
-    'z': 'Z',
+    'loc': 'Position',
     'pitch': 'Pitch',
-    'yaw': 'Facing',
+    'yaw': 'facing',
     'ja': 'Jump Angle',
     'ha': 'Hit Angle',
     'secondTurn': 'Second Turn',
     'preturn': 'Preturn',
     'lastTurning': 'Last Turning',
-    'landx': 'Last Landing X',
-    'landy': 'Last Landing Y',
-    'landz': 'Last Landing Z',
-    'hitx': 'Hit X',
-    'hity': 'Hit Y',
-    'hitz': 'Hit Z',
-    'jumpx': 'Jump X',
-    'jumpy': 'Jump Y',
-    'jumpz': 'Jump Z',
-    'speedx': 'X Speed',
-    'speedy': 'Y Speed',
-    'speedz': 'Z Speed',
+    'lastLanding': 'Last Landing',
+    'hit': 'Hit',
+    'jump': 'Jump',
+    'speed': 'Speed',
     'speedVector': 'Speed Vector',
     'tier': 'Tier',
     'airtime': 'Airtime',
     'grind': 'Grind',
-    'mmx': 'MM X Offset',
-    'mmz': 'MM Z Offset',
+    'mm': 'MM',
     'offset': 'Offset',
-    'offsetx': 'X Offset',
-    'offsetz': 'Z Offset',
     'pb': 'PB',
-    'pbx': 'X PB',
-    'pbz': 'Z PB',
     'lastInput': 'Last Input',
     'lastSidestep': 'Last Sidestep',
     'lastTiming': 'Last Timing',
@@ -44,9 +29,7 @@ const labelName = {
 };
 
 const defaultConfig = {
-    'x': true,
-    'y': true,
-    'z': true,
+    'loc': true,
     'pitch': true,
     'yaw': true,
     'ja': false,
@@ -54,30 +37,17 @@ const defaultConfig = {
     'secondTurn': false,
     'preturn': false,
     'lastTurning': true,
-    'landx': true,
-    'landy': true,
-    'landz': true,
-    'hitx': false,
-    'hity': false,
-    'hitz': false,
-    'jumpx': false,
-    'jumpy': false,
-    'jumpz': false,
-    'speedx': false,
-    'speedy': false,
-    'speedz': false,
+    'lastLanding': true,
+    'hit': false,
+    'jump': false,
+    'speed': false,
     'speedVector': false,
     'tier': false,
     'airtime': false,
     'grind': false,
-    'mmx': false,
-    'mmz': false,
+    'mm': false,
     'offset': true,
-    'offsetx': true,
-    'offsetz': true,
     'pb': true,
-    'pbx': true,
-    'pbz': true,
     'lastInput': false,
     'lastSidestep': false,
     'lastTiming': false,
@@ -111,7 +81,7 @@ export function guiForm(player) {
         player.setDynamicProperty('guiConfig', JSON.stringify(updatedConfig));
         return;
     })
-};
+}
 
 function _safeParse(str, obj) {
     try {
@@ -119,4 +89,4 @@ function _safeParse(str, obj) {
     } catch {
         return obj;
     }
-};
+}

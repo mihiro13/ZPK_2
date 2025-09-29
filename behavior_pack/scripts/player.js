@@ -25,7 +25,8 @@ world.afterEvents.worldLoad.subscribe(() => {
             const input = getPlayerControlMovement(player);
             const current = getProperties(player, 'current');
             const tbf = getProperties(player, 'tbf');
-            if (player.getDynamicProperty('complementCoord') && loc.x === current.loc.x &&
+            if (player.getDynamicProperty('complementCoord') &&
+                loc.x === current.loc.x &&
                 loc.y === current.loc.y &&
                 loc.z === current.loc.z) {
                 loc = { x: loc.x + current.vel.x, y: loc.y + current.vel.y, z: loc.z + current.vel.z }

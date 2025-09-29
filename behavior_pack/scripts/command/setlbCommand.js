@@ -32,7 +32,7 @@ export function setlbCommandHandle(origin, arg) {
                 setLandingBox(player, block);
                 player.setDynamicProperty('lb_type', 'both');
                 return undefined;
-            };
+            }
         }
         return { message: 'Please look at valid block', status: 0 };
     } else if (arg === 'stand') {
@@ -41,7 +41,7 @@ export function setlbCommandHandle(origin, arg) {
             'lb_type': 'both',
             'boxStart': { x: 0, y: 500, z: 0 },
             'boxEnd': { x: 0, y: 500, z: 0 }
-        });
+        })
         setProperties(player, 'lb', {
             'offset': -1,
             'offset_x': -1,
@@ -49,7 +49,7 @@ export function setlbCommandHandle(origin, arg) {
             'pb': -1,
             'pb_x': -1,
             'pb_z': -1
-        });
+        })
 
         sendMessage(player, 'Clear PB and Set landing block successfully!');
         return undefined;
@@ -61,4 +61,4 @@ export function setlbCommandHandle(origin, arg) {
         player.setDynamicProperty('lb_type', lb_type);
         return undefined;
     }
-};
+}
