@@ -22,4 +22,4 @@ export function dfCommandHandle(origin, arg) {
         sendMessage(player, 'Invalid Number');
         return undefined;
     }
-};
+}

@@ -18,4 +18,4 @@ export function setCPCommandHandle(origin, victim, destination, facing, pitch) {
         setCP(player, destination, { x: pitch, y: facing });
     }
     return undefined;
-};
+}

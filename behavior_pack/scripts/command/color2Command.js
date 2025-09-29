@@ -30,4 +30,4 @@ export function color2CommandHandle(origin, arg) {
     player.setDynamicProperty('color2', sectionColor);
     sendMessage(player, 'Set color1 to §' + sectionColor + arg);
     return undefined;
-};
+}

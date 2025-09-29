@@ -19,7 +19,7 @@ export function clearPbCommandHandle(origin) {
         'pb': -1,
         'pb_x': -1,
         'pb_z': -1
-    });
+    })
     sendMessage(player, 'Successfully clear pb.');
     return undefined;
-};
+}

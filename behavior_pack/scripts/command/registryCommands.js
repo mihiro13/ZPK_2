@@ -48,4 +48,4 @@ system.beforeEvents.startup.subscribe((init) => {
     for (const [cmd, handler] of commandList) {
         init.customCommandRegistry.registerCommand(cmd, handler);
     }
-});
+})

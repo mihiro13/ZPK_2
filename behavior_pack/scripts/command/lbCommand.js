@@ -13,4 +13,4 @@ export function lbCommandHandle(origin) {
     const player = origin.sourceEntity;
     system.run(() => setlbForm(player, false));
     return undefined;
-};
+}

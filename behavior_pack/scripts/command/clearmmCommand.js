@@ -15,11 +15,11 @@ export function clearMMCommandHandle(origin) {
     player.setDynamicProperties({
         'mmStart': { x: 0, y: 500, z: 0 },
         'mmEnd': { x: 0, y: 500, z: 0 }
-    });
+    })
     setProperties(player, 'lb', {
         'mm_x': -1,
         'mm_z': -1,
-    });
+    })
     sendMessage(player, 'Successfully clear MM');
     return undefined;
-};
+}
