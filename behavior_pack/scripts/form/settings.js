@@ -14,7 +14,7 @@ export function settingForm(player) {
     const sendoffset_z = player.getDynamicProperty('sendoffset_z') ?? true;
     const offset_limit = player.getDynamicProperty('offset_limit') ?? 0.7;
     const prefix = player.getDynamicProperty('prefix') ?? '<MPK>';
-    const timezone = player.getDynamicProperty('timezone') ?? 0;
+    const timezone = player.getDynamicProperty('timezone') ?? '0';
     const complementCoord = player.getDynamicProperty('complementLag') ?? false;
     const checkpointRetuner = player.getDynamicProperty('cpReturnItem') ?? 'minecraft:red_dye';
     const checkpointSet = player.getDynamicProperty('cpSetItem') ?? 'minecraft:emerald';
