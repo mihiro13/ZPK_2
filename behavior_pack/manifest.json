@@ -2,9 +2,9 @@
     "format_version": 2,
     "header": {
         "description": "An addon for parkour",
-        "name": "ZPK Mod 2 v1.3.4",
+        "name": "ZPK Mod 2 v1.3.5",
         "uuid": "8129e7e8-97b9-4b3c-8bd7-7d2d884e45c4",
-        "version": [ 1, 3, 4 ],
+        "version": [ 1, 3, 5 ],
         "min_engine_version": [ 1, 21, 100 ]
     },
     "modules": [
@@ -12,22 +12,22 @@
             "type": "script",
             "language": "javascript",
             "uuid": "b764895e-cfe4-43dc-a764-4a0bfd92a00d",
-            "version": [ 1, 3, 4 ],
+            "version": [ 1, 3, 5 ],
             "entry": "scripts/index.js"
         }
     ],
     "dependencies": [
         {
             "module_name": "@minecraft/server",
-            "version": "2.3.0-beta"
+            "version": "beta"
         },
         {
             "module_name": "@minecraft/server-ui",
-            "version": "2.1.0-beta"
+            "version": "beta"
         },
         {
             "uuid": "643aebe5-2a69-41ad-a6f5-ece94e4dd35f",
-            "version": [ 1, 3, 4 ]
+            "version": [ 1, 3, 5 ]
         }
     ],
     "metadata": {
