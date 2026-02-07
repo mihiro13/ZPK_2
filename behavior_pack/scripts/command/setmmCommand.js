@@ -32,8 +32,8 @@ export function setMMCommandHandle(origin, arg) {
         }
         return { message: 'Please look at valid block', status: 0 };
     } else {
-        const location = player.location;
-        const bottomBlock = player.dimension.getBlock({ x: location.x, y: location.y - 0.01, z: location.z });
+        //const location = player.location;
+        const bottomBlock = player.getBlockStandingOn(); //player.dimension.getBlock({ x: location.x, y: location.y - 0.01, z: location.z });
         setMMBox(player, bottomBlock);
         return undefined;
     }

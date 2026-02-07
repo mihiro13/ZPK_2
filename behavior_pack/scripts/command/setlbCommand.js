@@ -54,8 +54,8 @@ export function setlbCommandHandle(origin, arg) {
         sendMessage(player, 'Clear PB and Set landing block successfully!');
         return undefined;
     } else {
-        const location = player.location;
-        const bottomBlock = player.dimension.getBlock({ x: location.x, y: location.y - 0.01, z: location.z });
+        //const location = player.location;
+        const bottomBlock = player.getBlockStandingOn(); //player.dimension.getBlock({ x: location.x, y: location.y - 0.01, z: location.z });
         const lb_type = lb_types.indexOf(arg) === -1 ? 'both' : arg;
         setLandingBox(player, bottomBlock);
         player.setDynamicProperty('lb_type', lb_type);
