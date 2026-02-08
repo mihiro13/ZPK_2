@@ -32,9 +32,9 @@ export function settingForm(player) {
         .textField('Timezone (GMT+/-)', '+9 | -5', { defaultValue: timezone })
         .toggle('beta 座標のtick抜けを補完', { defaultValue: complementCoord })
     if (player.playerPermissionLevel === PlayerPermissionLevel.Operator) {
-        form.textField('Checkpoint Returner', 'minecraft:red_dye', { defaultValue: checkpointRetuner })
-            .textField('Checkpoint Set', 'minecraft:emerald', { defaultValue: checkpointSet })
-            .textField('Gamemode Changer', 'minecraft:iron_nugget', { defaultValue: gamemodeChanger })
+        form.textField('Checkpoint Returner', 'minecraft:red_dye', { defaultValue: String(checkpointRetuner) })
+            .textField('Checkpoint Set', 'minecraft:emerald', { defaultValue: String(checkpointSet) })
+            .textField('Gamemode Changer', 'minecraft:iron_nugget', { defaultValue: String(gamemodeChanger) })
     };
     form.show(player).then((res) => {
         if (res.canceled) {
@@ -56,9 +56,9 @@ export function settingForm(player) {
 
         if (player.playerPermissionLevel === PlayerPermissionLevel.Operator) {
             player.setDynamicProperties({
-                'cpReturnItem': prohibitedItem.includes(res.formValues[8]) ? checkpointRetuner : res.formValues[8],
-                'cpSetItem': prohibitedItem.includes(res.formValues[9]) ? cpSetItem : res.formValues[9],
-                'gamemodeChanger': prohibitedItem.includes(res.formValues[10]) ? gamemodeChanger : res.formValues[10]
+                'cpReturnItem': prohibitedItem.includes(res.formValues[10]) ? checkpointRetuner : res.formValues[10],
+                'cpSetItem': prohibitedItem.includes(res.formValues[11]) ? cpSetItem : res.formValues[11],
+                'gamemodeChanger': prohibitedItem.includes(res.formValues[12]) ? gamemodeChanger : res.formValues[12]
             })
         }
     })
