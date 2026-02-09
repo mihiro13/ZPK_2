@@ -15,6 +15,8 @@ export function settingForm(player) {
     const offset_limit = player.getDynamicProperty('offset_limit') ?? 0.7;
     const prefix = player.getDynamicProperty('prefix') ?? '<MPK>';
     const timezone = player.getDynamicProperty('timezone') ?? '0';
+    const position_checker = player.getDynamicProperty('position_checker') ?? false;
+    const airtick = player.getDynamicProperty('airtick') ?? '1';
     const complementCoord = player.getDynamicProperty('complementLag') ?? false;
     const checkpointRetuner = player.getDynamicProperty('cpReturnItem') ?? 'minecraft:red_dye';
     const checkpointSet = player.getDynamicProperty('cpSetItem') ?? 'minecraft:emerald';
@@ -31,6 +33,8 @@ export function settingForm(player) {
         .toggle('Send PB z in chat', { defaultValue: sendpb_z })
         .textField('Timezone (GMT+/-)', '+9 | -5', { defaultValue: timezone })
         .toggle('beta 座標のtick抜けを補完', { defaultValue: complementCoord })
+        .toggle('Position Checker', { defaultValue: position_checker })
+        .textField('Air Tick', '1', { defaultValue: airtick })
     if (player.playerPermissionLevel === PlayerPermissionLevel.Operator) {
         form.textField('Checkpoint Returner', 'minecraft:red_dye', { defaultValue: String(checkpointRetuner) })
             .textField('Checkpoint Set', 'minecraft:emerald', { defaultValue: String(checkpointSet) })
@@ -51,14 +55,16 @@ export function settingForm(player) {
             'sendpb_x': res.formValues[6],
             'sendpb_z': res.formValues[7],
             'timezone': res.formValues[8],
-            'complementCoord': res.formValues[9]
+            'complementCoord': res.formValues[9],
+            'position_checker': res.formValues[10],
+            'airtick': res.formValues[11]
         });
 
         if (player.playerPermissionLevel === PlayerPermissionLevel.Operator) {
             player.setDynamicProperties({
-                'cpReturnItem': prohibitedItem.includes(res.formValues[10]) ? checkpointRetuner : res.formValues[10],
-                'cpSetItem': prohibitedItem.includes(res.formValues[11]) ? cpSetItem : res.formValues[11],
-                'gamemodeChanger': prohibitedItem.includes(res.formValues[12]) ? gamemodeChanger : res.formValues[12]
+                'cpReturnItem': prohibitedItem.includes(res.formValues[12]) ? checkpointRetuner : res.formValues[12],
+                'cpSetItem': prohibitedItem.includes(res.formValues[13]) ? cpSetItem : res.formValues[13],
+                'gamemodeChanger': prohibitedItem.includes(res.formValues[14]) ? gamemodeChanger : res.formValues[14]
             })
         }
     })

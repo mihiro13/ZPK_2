@@ -14,6 +14,7 @@ import './labels/label';
 import './util/blockCollision';
 import './command/registryCommands';
 import './util/walledBlock'
+import { sendMessage } from './util/message';
 
 world.afterEvents.worldLoad.subscribe(() => {
     system.runInterval(() => {
@@ -45,6 +46,10 @@ world.afterEvents.worldLoad.subscribe(() => {
             };
             let isGrinding = current.isGrinding;
             if (input === '' && !isJumping) isGrinding = false;
+
+            const digit = player.getDynamicProperty('digit') ?? 4;
+            const airtick = player.getDynamicProperty('airtick') ?? '1';
+            if (player.getDynamicProperty('position_checker') && getProperties(player, 'label').airtime === Number(airtick)) sendMessage(player, `X: ${loc.x.toFixed(digit)} Z: ${loc.z.toFixed(digit)}`);
             const props = {
                 'loc': loc,
                 'yaw': rot.y,
