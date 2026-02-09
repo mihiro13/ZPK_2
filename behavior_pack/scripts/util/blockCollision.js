@@ -46,7 +46,7 @@ export function isCollidableBlock(block) {
     if (id === 'brewing_stand') return { result: true, type: 'brewing_stand' };
     if (id.endsWith('hanging_sign')) return { result: true, type: 'hanging_sign' };
     if (id === 'grindstone') return { result: true, type: 'grindstone' };
-    if (id === 'chain') return { result: true, type: 'chain' };
+    if (id.endsWith('chain')) return { result: true, type: 'chain' };
     if (id.endsWith('candle')) return { result: true, type: 'candle' };
     if (id === 'bell') return { result: true, type: 'bell' };
     if (id.endsWith('amethyst_bud') || id === 'amethyst_cluster') return { result: true, type: 'amethyst' };
